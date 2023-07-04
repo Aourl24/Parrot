@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<p> Current User -- {{user.username}}</p>
+<br>
+<a href="{%url 'userReg'%}"> Add New User </a>
+<br>
+<a href="{%url 'account_logout'%}"> Logout </a>
+<br>
+
+{%endblock%}

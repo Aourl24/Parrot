@@ -1,0 +1,27 @@
+{%load static%}
+<html>
+<meta name='viewport' content='width=device-width initial-scale=1'>
+<head>
+<link rel='stylesheet' href="{%static 'css/awwal.css'%}" >
+
+
+</head>
+
+{%block header%}
+
+<h1 style='color:5cb3ff;font-size:24px'>Twitter</h1>
+
+{%endblock%}
+
+{%block content%}
+<div class='box' style='text-align:center;margin:100px auto 100px auto;'>
+<h2 style='color:black;font-size:18px;'>Login</h2>
+<img class='circle' style='position;'src='{%static 'image/images.png'%}' height=70mm width=70mm>
+<form method='post'>
+{%csrf_token%}
+<div class='fom' style='text-align:left'>{{form.as_p}}</div>
+<button class='input'>Login</button>
+</form>
+</div>
+{%endblock%}
+</html>

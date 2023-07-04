@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='insize'> Tweets </div>
+{%if tweets %}
+
+{%include 'tweetTemplate/tweetbox.html'%}
+
+{%else%}
+
+<h1 class="pcolor"> No Tweets Found </h1>
+{%endif%}
+<hr>
+<div class='box' style='text-align: left;'>
+<div class='insize'> Profile </div>
+{%if people %}
+{%for profile in people%}
+<div class='box bordr curve' style='width:100%'>
+	<a href="{{profile.get_absolute_url}}" >
+		<img class='avatar' style='margin:0px' loading='lazy' src='{{profile.profile_photo.url}}'  >
+	
+	<div class='mesize'>{{profile.user.username|title}}</div>
+	</a>
+	<hr>
+	
+
+</div>
+
+{%endfor%}
+
+{%endif%}
+</div>
+{%endblock%}

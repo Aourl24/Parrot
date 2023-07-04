@@ -1,0 +1,119 @@
+{%load static %}
+{%load custom_tags%}
+<html>
+<meta name='viewport' content='width=device-width initial-scale=1'>
+<head>
+<link rel='stylesheet' href="{%static 'css/bootstrap/bootstrap.min.css'%}" >
+<link rel='stylesheet' href="{%static 'css/acss/acss_basic.css'%}" >
+<link rel='stylesheet' href="{%static 'css/fontawesome_5/css/all.min.css'%}" >
+<link rel='stylesheet' href="{%static 'css/react.css'%}" >
+<link rel='stylesheet' href="{%static 'css/acss/acss_desktop.css'%}" >
+<script src="{%static 'js/react.production.min.js'%}"></script>
+<script src="{%static 'js/react-dom.production.min.js'%}"></script>
+<script src="{%static 'js/babel.min.js'%}"></script>
+<script src="{%static 'js/htmx.min.js'%}"></script>
+<script src="{%static 'js/jquery.min.js'%}"></script>
+</head>
+<style>
+:root{
+--primary-color: #1DA1F2;
+--secondary-color:#07294D
+}
+{#1DA1F2}
+.header{
+word-spacing:25px;
+
+}
+
+.small{
+display:inline-block;
+height:25px;
+width:25px;
+border-radius:200px;
+border:2px solid white;
+}
+
+body{
+background-color:white;
+font-size:12px;
+
+}
+
+p-bg-color{
+background:color:#1DA1F2 !important
+}
+
+.dropdown{
+    display: none;
+}
+
+.show{
+display:block !important
+}
+
+</style>
+
+{%if user.profile.mode == 'black'%}
+    <link rel='stylesheet' href='{%static 'css/dark.css'%}' >
+  
+{%endif%}
+
+<body>
+
+{%block body%}
+{%if user.is_anonymous%}
+<div class='heder backgrund nabar fied-top center wite box-border' style='background-color:white;border-raius:10px;justify-content:center;heiht:4.5cm;border:none'><h1 class='pcolor bold' >{%block header%}Parrot.com{%endblock%}</h1>
+
+<div style='display:inline'><a href="{%url 'account_login'%}"><button class='box button Btn-width widthD' style='backgound-color:red;idth:3.5cm;font-size:18px'>Log In</button></a></div>
+<div style='display:inline'><a href="{%url 'account_signup'%}"><button class='box button Btn-width
+ widthD border pcolor' style='background-color:white;widh:3.5cm;font-size:18px'>Sign Up</button></a></div>
+</div>
+{%endif%}
+
+
+<div class='sticky-top navbar box-borer up' style='font-size:24px;padding:7px;box-shadow:none;background-color:white;border-bottom:2px solid #DEF1FD'>
+
+<a href="{%url 'TweetUrl'%}" class='normal pcolor' ><i class='fas fa-home'></i> <span class='hide hideI'>Home </span> </a> 
+<a href="{%url 'TrendUrl'%}" class='normal pcolor'><i class='fas fa-search'></i> <span class='hide hideI'>Explore </span> </a>
+<a href="{%url 'NotificationUrl' %}"  class='normal pcolor' ><i class='fas fa-bell'></i>{%if request.user.notifications.unread.count != 0 %}<span hx-get="{%url 'NotificationUrl' %}" hx-trigger='once' class='small circle' style='font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white'>{{request.user.notifications.unread.count}}</span>
+
+{%endif%}
+<span class='hide hideI'>Notification </span>
+</a>
+
+<a href="{%url 'chat' %}" class='normal pcolor'><i class='fas fa-envelope'></i> <span class='hide hideI'>Chat </span> </a>
+<a><img loading='lazy' src="{{request.user.profile.profile_photo.url}}" class='avar small' onclick='show()'> <span class='hide pcolor hideI'>Profile </span> </a>
+</div>
+
+
+{% if user.is_authenticated%}
+{%include 'dropdown.html' %}
+{%endif%}
+
+<div class='container' style='padding:0px;magin-top:0px'>
+
+
+
+
+{%endblock%}
+{%block content%}
+
+{%endblock content%}
+{%block bottom%}
+<div class='bottom-side bottomD' style='font-size:24px;box-shadow:none;padding:15px;color:white' >
+{%endblock%}
+<a href="{%url 'CreateUrl'%}" class='normal white '>
+<i class='fas fa-pen'></i>
+</a>
+</div>
+
+</body>
+<script>
+
+
+function show(){
+$('#dropdown').toggleClass('show')
+}
+
+</script>
+</html>

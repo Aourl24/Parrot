@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{%block content%}
+<p class='insize pcolor'>
+<div class='insize'>
+{% if profile.user != request.user %}
+{{profile.user.username}} 
+{%endif%}
+{%if fo%}
+
+  Following
+  <div class='passive'> People that {{profile.user.username}} follow </div>
+ </div>
+ {%else%}
+  Followers
+ <div class='passive'> People that is following {{profile.user.username}} </div>
+ </div>
+ {%endif%}
+</p>
+<hr>
+{%for profile in profiles%}
+<div class='flex-flow' style='overflow: auto;align-items:center;gap:5px'>
+<div>
+<p>
+<a href="{{profile.get_absolute_url}}" >
+<img class='avatar' style='margin:0px' loading='lazy' src={{profile.profile_photo.url}}  >
+</a>
+</p>
+</div>
+
+<div class='user mesize'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><span class=' pasive'> {{profile.user.username|title}}</span>
+</div>
+</div>
+</div>
+<hr>
+{%endfor%}
+
+{%endblock%}

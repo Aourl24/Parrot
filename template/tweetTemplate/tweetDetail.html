@@ -1,0 +1,149 @@
+{%extends 'base.html'%}
+{%load custom_tags%}
+
+
+{%block content%}
+<style>
+body{
+backgrond-color:white;
+}
+
+.allima img{
+object-fit:contain;
+border:2px solid #C0C0C0;
+height:350px;
+width:250px;
+text-algn:center;
+justify-content:center;
+align-items:center;
+background-color:none;
+filter:blur(0px);
+border:none;
+}
+</style>
+
+
+
+<div class='box cve brder' style='border:none;padding:7px;box-shadow:none'>
+{%if tweet.comment%}
+<p class='desize bold passive'><i class='fas fa-comment'></i> Reply to {{tweet.comment.profile|title}} <a class='normal' style='color:#1DA1F2' href='{{tweet.comment.get_absolute_url}}'>Tweet</a></p>
+{%endif%}
+
+{%if tweet.retweet.all %}
+<p class='' style='flat:right'>
+<i class='fas fa-retweet'></i> <span class='passive desize'> {{tweet.retweet.user.username|title}} Retweet </span> 
+</p>
+{%endif%}
+
+
+
+<div class='flex-flow' style='align-items:center;gap:5px'>
+<div>
+<p>
+<a href="{{tweet.profile.get_absolute_url}}" >
+<img class='avatar' style='margin:0px' loading='lazy' src={{tweet.profile.profile_photo.url}}  >
+</a>
+</p>
+</div>
+
+<div class='user mesiz'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><span class='desize passive'>/{{tweet.profile.user.username|lower}}</span>
+<span class='passive desize' style='flat:right'> • {{tweet.date|timesince}}</span>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+<p class='body' style='line-height:30px;font-size:20px'>{{tweet.body}}</p>
+
+
+<p>
+{%if tweet.image.all%}
+<div class='box-border flex-wrap' id='leave' style=';border:none;box-shadow:none;padding:0px;width:100%;height:auto;'>
+{%for img in tweet.image.all|slice:'4' %}
+{%if img.image  %}
+
+<div class='' style='flex-grow:2;flex-basis:3cm;height:auto;width:4cm;max-heght:6cm'>
+<a href='{{img.get_absolute_url}}' class='normal' style=''>
+<div class='allimage b' style='wdth:3cm;heght:3cm;padding:0px;margin:2px;border:none;flex-bais:4cm; flex-gow:2'>
+<img src={{img.image.url}}  loading='lazy' id={{img.id}} class='box-border' style=';width:100%;height:4cm;padding:0px;border:none;box-shadow:none;border-radius:3px'/>
+</div>
+
+</a>
+</div>
+
+{%endif%}
+
+{%endfor%}
+</div>
+
+{%elif tweet.file.all%}
+{%for file in tweet.file.all|slice:'1' %}
+<div class='center' onclick="$('#{{tweet.id}}')[0].play()">
+<video id='{{tweet.id}}' class='box border curve' style='height:6cm;width:100%'>
+<source src='{{file.file.url}}' >
+</video>
+</div>
+{%endfor%}
+
+{%endif%}
+</p>
+
+{%if tweet.image.count > 1 %}
+<div class='passive desize' style='font-size:12px' >{{tweet.image.count}} images</div>
+{%endif%}
+
+<input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
+
+
+<p class='seperate' style='font-size:24px;word-spacing:28px'>
+
+<button><span class='sticker'><i class='far fa-comment'></i> {{tweet.tweet.count}} </span></button>
+
+{%include 'tweetTemplate/like.html'%}
+
+{%include 'tweetTemplate/retweet.html'%}
+
+<button><span class='sticker'><i class='fas fa-share-alt'></i></span> </button> 
+</p>
+
+
+
+</div>
+<hr>
+
+
+
+{%include 'tweetTemplate/tweetbox.html' with tweets=tweet.tweet.all %}
+<br>
+<br>
+
+<div class='bottomline fixed-bottom bcolor' style='padding:5px'><a class='norml' href='#hell'><input name='body' id='holder' class='input' onclick="$('#hell').addClass('show');$('#holder').addClass('hide')" style='border: none;border-bottom: 2px solid var(--primary-color);width:100%;bottom:10px;height:1cm;box-shadow:none;' placeholder='Reply'></a>
+</div>
+
+
+
+<div id='hell' class='hide'>
+{%include 'tweetTemplate/create.html'%}
+</div>
+
+
+
+{%block bottom %}
+
+{%endblock%}
+
+
+{%endblock%}
+
+
+
+
+{%csrf_token%}
+<input type='hidden' name='detail' value='{{tweet.id}}' >
+<div ><input name='body' class='bottom-line' style='width:100%;bottom:10px;height:1cm;box-shadow:none;border:none' placeholder='Reply'>
+</div>
+</form>

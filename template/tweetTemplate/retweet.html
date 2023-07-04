@@ -1,0 +1,31 @@
+{%if user.is_authenticated%}
+<button hx-get="{%url 'TweetUrl'%}" hx-include='#tt{{tweet.id}}' hx-swap='outerHTML' style='color:#757E2B' onClick=''>
+<span class='sticker'>
+{%if prof in tweet.retweet.all%}
+<i id='{{tweet.id}}' style='color:#757E2B' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}}
+{%else%}
+<i id='{{tweet.id}}' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}} 
+<span class='htmx-indicator' style='display:inline-block; position:absolute;margin-left:-25px'><i class='fas fa-retweet' style='font-size:25px'></i>+1</span> 
+
+{%endif%}
+</span></button>
+{%else%}
+<button style='color:#757E2B' onClick=''>
+<span class='sticker'>
+{%if prof in tweet.retweet.all%}
+<i id='{{tweet.id}}' style='color:#757E2B' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}}
+{%else%}
+<i id='{{tweet.id}}' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}} 
+<span class='htmx-indicator' style='display:inline-block; position:absolute;margin-left:-25px'><i class='fas fa-retweet' style='font-size:25px'></i>+1</span> 
+
+{%endif%}
+</span></button>
+
+
+{%endif%}
+
+
+
+
+
+

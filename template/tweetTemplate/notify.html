@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{% load notifications_tags %}
+{%block content%}
+<div class='box' style='border:none'>
+<br>
+<div class='subject'>
+Your Notifications
+</div>
+
+{% if user.notifications.unread %}
+<p class='subject'>Unread</p>
+{%for notification in user.notifications.unread%}
+
+
+
+<p><div class='insize'>{{notification.actor}} {{notification.verb}}</div>
+<p><div class='passive'> on {{notification.timestamp}}</div></p>
+</hr></p>
+
+{%endfor%}
+{%endif%}
+<hr>
+{%for notification in user.notifications.read%}
+{% if notification.actor != request.user %}
+
+{%endif%}
+<p><div class='insize'>{{notification.actor|title}} {{notification.verb}}</div>
+<p><a class='passiv' href={{notification.description|safe}} > View Tweets</a>
+<p><div class='passive'> on {{notification.timestamp}}</div></p>
+</hr></p>
+<hr>
+{%endfor%}
+</div>
+{%endblock%}

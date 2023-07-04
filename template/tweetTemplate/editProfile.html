@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class='box' style='border:none'>
+<form method='POST' enctype='multipart/form-data'>
+{%csrf_token%}
+{%for field in form%}
+<p><div class='insize bold'>{{field.label}}</div>
+<div>{{field.as_widget}}</div></p>
+<hr>
+{%endfor%}
+<button class='normal center' style='height:1cm;width:100%;background-color:1DA1f2;color:white'>Submit</button>
+</form>
+</div>
+{%endblock%}

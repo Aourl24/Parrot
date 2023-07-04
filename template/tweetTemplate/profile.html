@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block heder%}
+{{profile.user|title}}Profile
+{%endblock%}
+
+{%block content%}
+<style>
+.allimage img{
+
+width:100%;
+}
+
+</style>
+<div class='ox'>
+{%if profile.cover_photo%}
+<div class='allimag' style='heiht:50%;boder:none' ><img src='{{profile.cover_photo.url}}'>
+</div>
+{%else%}
+<div class='allimage'><img src="media/profile.png" alt='This user has no Cover Photo' style='background-color:black;color:white;text-align:center;font-weight:bold;font-size:16px;'>
+</div>
+{%endif%}
+<div class='box' style='border:none'>
+<p><img class='avatar' style='margin-top:-20px;width:70px;height:70px' src={{profile.profile_photo.url}}  /> 
+
+<div class='insize pcolor'>{{profile.user.username|title}}</div>
+<div class='mesize passive'>@{{profile.user.username|title}}</div>
+<p></p>
+
+<p class='mesize passie'>{{profile.bio}}</p>
+<p class='desize passive'>Joined {{profile.date_joined}}</p>
+<p> <a href="{%url 'FollowerListUrl' profile.id %}" ><span class=' mesize passive'>{{profile.follower.count}} </span> Followers </a> | <a href="{%url 'FollowListUrl' profile.id %}" > <span class=' mesize passive'>{{profile.follow.count}}</span> Following  </a></p>
+
+</div>
+
+</div>
+
+{%if profile.user == request.user %}
+<a class='normal' href="{%url 'EditProfUrl'%}"><div class='lft ox bold center' style='color:#1DA1F2;coor:white;dispay:inline-block'>Edit Profile</div></a>
+{%else%}
+{%include 'tweetTemplate/follow.html' %}
+{%endif%}
+<hr>
+<p class='insize box-border center sticky-top' style='z-index: 4;border:none;box-shadow:none' >Tweets</p>
+
+
+{%include 'tweetTemplate/tweetbox.html'%}
+
+
+
+{%endblock%}

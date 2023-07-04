@@ -1,0 +1,13 @@
+{%extends 'login.html'%}
+{%block content%}
+<div class='box' style='text-align:center;margin:100px auto 100px auto;'>
+<h2 style='color:black;font-size:18px;'>SignUp</h2>
+<img class='circle' style='position;'src='{%static 'image/images.png'%}' height=70mm width=70mm>
+<form method='post'>
+{%csrf_token%}
+{{form.as_p}}
+<button class='input'>Ok</button>
+</form>
+</div>
+
+{%endblock%}

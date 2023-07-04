@@ -1,0 +1,32 @@
+@media(min-width: 600px){
+
+.boxD{
+max-width: 70%;
+eft:50%;
+
+}
+
+.hideD{
+	display: block;
+}
+
+.hideI{
+display:inline-block;
+font-size:18px;!important
+}
+
+.containerD{
+	text-align:;
+	width: 25%;
+}
+
+.partD{
+	display: none;
+}
+.widthD{
+width:40%; !important
+}
+
+
+
+}

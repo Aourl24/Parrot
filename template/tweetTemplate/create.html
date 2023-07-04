@@ -1,0 +1,57 @@
+<div id='box'>
+<form method='post' action="{%url 'CreateUrl'%}" enctype="multipart/form-data">
+{%csrf_token%}
+
+<input type='hidden' value={{tweet.id}} name='reply'>
+<div class='box-border ct' style='height:90%;border:none'>
+{%for field in form%}
+<p class='center'>{{field.as_widget}}</p>
+{%endfor%}
+
+{%for img in image%}
+
+<p>{{img.as_widget}}</p>
+
+{%endfor%}
+
+{%for fle in file%}
+
+<p>{{fle.as_widget}}</p>
+
+{%endfor%}
+<hr>
+<p class='pcolor center' style='word-spacing:25px;font-size:22px'>
+<i class='fas fa-location-arrow'></i> 
+<button class='normal pcolor' type='button' onclick="Image()"> <i class='fas fa-image'></i></button> 
+<button class='normal pcolor' type='button' onclick='Video()'><i class='fas fa-video'></i></button>
+
+<div id='imageName' class='cage center' ></div>
+<ul class='desize passive'>
+<li> You can upload maximum of 4 images </li>
+<li> You can only upload a single video at once </li>
+<li> If you upload image and video together the video only will be display in your post</li>
+</ul>
+ 
+<div class='navbar fixed-bottom center' style='position:fixed;justify-content:center;border;background-color:#1DA1F2;color:white;text-align:center'>
+
+{%block bottom%}
+<button class='center normal' style='text-align:center;font-size:18px;color:white'>Tweet</button>
+{%endblock%}
+</div>
+</div>
+
+</form>
+</div>
+<script>
+function Image(){
+document.getElementById('upload').click();	
+$('#upload').change(function(){name=this.files[0];console.log(name);$('#imageName').append(`${this.files.length}  image <img src=${name.url} > `)})
+}
+
+function Video(){
+document.getElementById('video').click();	
+$('#video').change(function(){name=this.files[0].name;console.log(name);$('#imageName').append(`file ${name} `)})
+}
+
+
+</script>

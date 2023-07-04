@@ -1,0 +1,38 @@
+
+<div id='{{saveId}}' class='box border box' style='border-color:white;width:50%;font-size:20px;backround-color:#d7d7d7;color:black;z-index:100;position:absolute'>
+
+{% if tweet.profile == prof %}
+<div class='black'> <a href="{%url 'DeleteUrl' saveId %}">Delete Tweet </a></div>
+{%endif%}
+
+<form method='POST' hx-include='#on{{tweet.id}}' hx-trigger='click' hx-post="{%url 'SaveUrl' %}" hx-swap='outerHTML'>
+
+{%csrf_token%}
+
+<input name='save' id='save' value="{{saveId}}" type='hidden' >
+<div hx-trigger='click'> Save Tweet </div>
+</form>
+<hr>
+<button class='normal' style='color:red' onclick='Close()' >Close</button>
+</div>
+
+
+<script>
+//document.getElementById('{{saveId}}').style.display='block';
+
+	function Close(){
+$('#{{saveId}}').toggleClass('hide');
+console.log('done')
+
+//document.getElementById('{{saveId}}').style.display='block';
+}
+
+function CloseAuto(){
+	$('#{{saveId}}').fadeOut()
+	console.log('ok')
+}
+
+setTimeout(CloseAuto,5000)
+
+
+</script>

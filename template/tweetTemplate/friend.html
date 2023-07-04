@@ -1,0 +1,23 @@
+<br>
+<div class='center' style=''>
+	<h2 class='pcolor' style='widh:100%;pading-right:30px'> Connect with People </h2>
+	<br>
+	<p>
+<div class='flex-flow box borer curve' style='overflow:auto;with:100%'>
+{%for profile in people%}
+<div class='box border curve center' style='widt:100%'>
+	<a href="{{profile.profile.get_absolute_url}}" >
+		<img class='avatar' style='margin:0px' loading='lazy' src='{{profile.profile.profile_photo.url}}'  >
+	
+	<div class='mesize'>{{profile.username}}</div>
+	</a>
+	<p>
+	{%include 'tweetTemplate/follow.html' %}
+    </p>
+</div>
+
+{%endfor%}
+</div>
+</p>
+</div>
+</div>

@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='insize'> Chats</div>
+<div class='passiv'> You can only message those who follows you and you follow them  </div>
+<br>
+{%for cht in chat%}
+
+<a class='normal' href={{cht.get_absolute_url}} >
+<p class='mesize pcolor'>{{cht.user.username|title}}</p>
+<p class='desize passive'>{{cht.active}}</p>
+</a>
+
+
+<hr>
+{%endfor%}
+
+
+{%endblock%}
+<p ><b>{{msg.sender|title}}</b></p>

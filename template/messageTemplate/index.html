@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<style>
+	textarea{
+		height: 1cm;
+	}
+
+</style>
+<div classs='insize box '>{{cha.user.username|title}}</div>
+<br>
+
+
+{%include 'messageTemplate/message.html'%}
+
+
+<hr>
+
+
+Write a Message
+<form  class='fixed-bottom box' id='mes' hx-post='' hx-swap='none' >
+{%csrf_token%}
+{%for field in form%}
+{{field.as_widget}}
+{%endfor%}
+<button onclick="">Send</button>
+</form>
+{%endblock%}

@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class='box' style="padding:2px">
+<form method='get' action="{%url 'SearchUrl' %}" >
+<div class='center'>
+<input type='search' class=' input bo' placeholder='Search' name='search' style='height:1cm;margi:15px;width:100%;border:2px solid #1DA1F2'>
+</div>
+</form>
+
+<div class='bx brder' style='border:none;height:100%;padding-top:2px'>
+<p><div class='bo insize pcolor' style='bacground-color:black;color:black;border:none'>Trending</div> 
+<div class='desize black'> Find out the most talk about words today </div>
+
+</p>
+{%for trend in trends%}
+<p><a class='black bold' href="{%url 'TrendRed' trend %}" >{{trend}}</a></p>
+<div class='passive desize'><span class='passive' hx-get="{%url 'TrendRed' trend %}" hx-trigger='load'></span> tweets</div>
+
+
+<hr>
+{%endfor%}
+
+<div class='box bcolor borer bolor ' id='connect' hx-get="{%url 'FriendUrl'%}" hx-swap='innerHTML' hx-trigger='load' style="">
+
+<div class='circle rotate htmx-indicator' style='display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;'>
+</div>
+</div>
+</div>
+</div>
+{%endblock%}

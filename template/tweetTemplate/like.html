@@ -1,0 +1,26 @@
+{%if user.is_authenticated%}
+<button hx-get="{%url 'TweetUrl'%}" hx-include='#on{{tweet.id}}' hx-swap='outerHTML' style='color:#ff00ff' onClick=''>
+<span class='sticker'>
+{%if prof in tweet.like.all%}
+<i id='{{tweet.id}}' style='color:#ff00ff' class='fas fa-heart' data-fa-transform="shrink-8 fa-border"></i> {{tweet.like.count}}
+{%else%}
+<i id='{{tweet.id}}' class='far fa-heart' data-fa-transform="shrink-8 fa-border"></i> {{tweet.like.count}} 
+<span class='htmx-indicator' style='display:inline-block; position:absolute;margin-left:-25px'><i class='fas fa-heart' style='color:#ff00ff;font-size:25px'></i>+1</span> 
+
+{%endif%}
+
+</span></button>
+{%else%}
+<button style='color:#ff00ff' onClick=''>
+<span class='sticker'>
+{%if prof in tweet.like.all%}
+<i id='{{tweet.id}}' style='color:#ff00ff' class='fas fa-heart' data-fa-transform="shrink-8 fa-border"></i> {{tweet.like.count}}
+{%else%}
+<i id='{{tweet.id}}' class='far fa-heart' data-fa-transform="shrink-8 fa-border"></i> {{tweet.like.count}} 
+<span class='htmx-indicator' style='display:inline-block; position:absolute;margin-left:-25px'><i class='fas fa-heart' style='color:#ff00ff;font-size:25px'></i>+1</span> 
+
+
+
+{%endif%}
+</span></button>
+{%endif%}

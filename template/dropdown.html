@@ -1,0 +1,101 @@
+<style>
+
+.dropdown{
+dislay:block;
+margin-left:-10px;
+font-size:18px;
+border:none;
+margin-top:35px;
+color:black!important;
+with: 25%;
+text-align: left;
+right: 10px;
+background-color: white;
+padding-right: 20px;
+}
+
+</style>
+
+<body>
+
+
+<div class='dropdown border drop-top hieD containerD partD ' style='color:#1DA1F2;padding-left:15px;margin-top:40px' id='dropdown'>
+    
+    <div>
+    {%if user.is_authenticated%}
+   <div class='flex-flow' style='overflow: auto;align-items:center;gap:5px;justify-cotent:right'>
+<img class='avatar' style='width:70px;height:70px;magin-top:-10px' src={{request.user.profile.profile_photo.url}}  /> 
+       </div> 
+        <div class='passive'> <a href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class=' mesize passive' style='padding:3px'>{{request.user.profile.follower.count}}</span> Followers </a> | <a href="{%url 'FollowListUrl' request.user.profile.id%}" ><span class=' mesize passive' style='padding:3px'>{{request.user.profile.follow.count}}</span> Following  </a> </div>
+        {%endif%}
+        <hr/>
+       
+                <div>
+                    <a href='{{request.user.profile.get_absolute_url}}' class='normal black polor blackW'>
+                        <i class='fas fa-user pcolor'></i>
+    
+                        Profile
+                    </a>
+                </p>
+            
+                <p>
+                    <a href="{%url 'SaveUrl' %}" class='normal black blackW'>
+                        
+                        <i class='fas fa-box pcolor'></i>
+                        Saved Tweets
+                        
+                    </a>
+                </p>
+            
+                <p>
+                    <a href='' class='normal black blackW'>
+                        
+                        <i class='fas fa-user pcolor'></i>
+                        Settings
+                        
+                    </a>
+                </p>
+            
+                <p>
+                    <a href='' class='normal black blackW'>
+                        
+                        <i class='fas fa-question pcolor'></i>
+                        Help
+                        
+                    </a>
+                </p>
+            
+                <p>
+                <form method='GET' action="{%url 'ModeUrl' %}">
+                    <button class='normal blackW' type='radio' name='dark' value='{{request.path_info}}'>
+                        
+                        <i class='fas fa-sun pcolor'></i>
+                        Mode
+                        
+                    </button>
+                 </form>
+                 
+                </p>
+            
+    
+            {%if user.is_authenticated%}
+            
+                <p>
+                    <a href="{%url 'account_logout'  %}" class='normal black blackW'>
+                        
+                        <i class='fas fa-door-open pcolor'></i>
+                        Log-Out
+                        
+                    </a>
+                
+                </p>
+            
+          {%endif%}
+          </div>
+        
+    </p>   
+    </div>
+    </div>
+{%comment%}
+<p class='mesize color' style='font-size:24px'> {{request.user|title}} </p>
+{%endcomment%}  
