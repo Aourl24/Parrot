@@ -185,7 +185,7 @@ padding:2px;
 mrgin-left:0;
 height:100%;
 line-height:1.5cm;
-width:75%;
+width:100%;
 display:none;
 overflow:scroll;
 box-shdow:0 0px 5px #d8d8d8;
@@ -619,7 +619,7 @@ border:5px solid blue;
 border-left-color:orange;
 border-right-color:deepred;
 border-bottom-color:orange;
-animation:Rotate 1s 1s infinite
+animation:Rotate 4s 5s infinite
 }
 
 @keyframes Big{
@@ -676,9 +676,5 @@ width:90%;
 .sp{
 width:60%;
 --width:60%;
-}
-
-.Btn-width{
-width:3.5cm
 }
 

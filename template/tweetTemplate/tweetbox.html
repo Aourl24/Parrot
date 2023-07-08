@@ -11,48 +11,46 @@ text-alin:center
 
 }
 </style>
-<div id ='tweetbox' style=''>
+<div id ='tweetbox' style='' class='row sz-14'>
 {%for tweet in tweets %} 
-<div class='box curve border boxD ' id='twetbox' style='padding:12px;'>
+<div class='col-md-12 m-2 p-2' id='twetbox' style=''>
 {%if tweet.comment%}
-<p class='' style='flat:right'>
-<i class='fas fa-comment'></i> <span class='passive desize'>Reply to {{tweet.comment.profile|title}}</span> 
-<a class='normal' style='color:' href='{{tweet.comment.get_absolute_url}}'>Tweet</a>
-</p>
+<div class='row m-2 sz-12' style=''>
+  <i class='far fa-comment'></i> Reply to {{tweet.comment.profile|title}}'s <a class='' style='' href='{{tweet.comment.get_absolute_url}}'> tweet </a>
+</div>
 {%endif%}
 
 {%if tweet.retweet.all %}
-<p class='' style='flat:right'>
-<i class='fas fa-retweet'></i> <span class='passive desize'> {{tweet.retweet.user.username|title}} Retweet </span> 
-</p>
+<div class='row m-2 sz-12' style=''>
+  <i class='fas fa-retweet'></i> <span class='color-t'> {{tweet.retweet.user.username|title}} Retweet </span> 
+</div>
 {%endif%}
 
-<div class='left' style='position:absolute;display:block;' hx-get="{%url 'OptionUrl' %}" hx-swap='innerHTML' hx-target='#optionholder{{tweet.id}}' hx-include='#on{{tweet.id}}'> <span class='bold'>  <i class='fas fa-ellipsis-h'></i> </span> </div>
-<span id='optionholder{{tweet.id}}'> </span>
-<div class='flex-flow' style='overflow: auto;align-items:center;gap:5px'>
-<div>
-<p>
-<a href="{{tweet.profile.get_absolute_url}}" >
-<img class='avatar' style='margin:0px' loading='lazy' src={{tweet.profile.profile_photo.url}}  >
-</a>
-</p>
+<div class='row'>
+  <div class='col' style='text-align:right' hx-get="{%url 'OptionUrl' %}" hx-swap='innerHTML' hx-target='#optionholder{{tweet.id}}' hx-include='#on{{tweet.id}}'> 
+    <span class=''>  <i class='fas fa-ellipsis-v'></i> </span> 
+    <span id='optionholder{{tweet.id}}'> </span>
+  </div>
+  <div class='col-10 order-first'>
+    <span class='border p-2 rounded'>
+    <a href="{{tweet.profile.get_absolute_url}}" >
+      <img class='img rounded-circle' style='width:20px;height:20px' loading='lazy' src={{tweet.profile.profile_photo.url}}  >
+    </a>
+    {{tweet.profile|title}} <a href="{{tweet.profile.get_absolute_url}}" ><span class='desize pasive pcolor' style=''>/{{tweet.profile.user.username|lower}}</span></a>
+  </span>
+<span class='p-2' style=''> {{tweet.date|timesince}}</span>
+  </div>
 </div>
 
-<div class='user mesiz'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><a href="{{tweet.profile.get_absolute_url}}" ><span class='desize pasive pcolor' style=''>/{{tweet.profile.user.username|lower}}</span></a>
-<span class='passive desize' style='flat:right'> • {{tweet.date|timesince}}</span></div></div>
-</div>
 
-<br>
-<div style='margin-eft:15px'>
-<a class='normal black' href='{{tweet.get_absolute_url}}' >
+<div class='row m-2 my-3 sz-16' style=''>
+<a class='color-black' href='{{tweet.get_absolute_url}}' >
 
-<p class='body' style='margin-top:-25px'>{{tweet.body|truncatechars:':280'}}</p>
+{{tweet.body|truncatechars:':280'}}
 
 </a>
 
-
-
-<p>
+</div>
 
 {%if tweet.image.all%}
 
@@ -109,31 +107,34 @@ text-alin:center
 </div>
 {%endfor%}
 {%endif%}
-</p>
 
 
 
 <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
 <input id='tt{{tweet.id}}' type='hidden' value={{tweet.id}} name='retweet' type='hiddn' >
 
-<div class='cener'>
-<p class='seperate'>
+<div class='row my-2'>
 
-<a href="{{tweet.get_absolute_url}}?#holder"><button><span class='sticker'><i class='far fa-comment' ></i> {{tweet.tweet.count}} </span></button></a>
+<div class='col'>
+<a href="{{tweet.get_absolute_url}}?#holder"><button class='no-border btn-link'><i class='far fa-comment' ></i> {{tweet.tweet.count}} </button></a>
+</div>
 
+<div class='col'>
 {%include 'tweetTemplate/like.html'%}
+</div>
+<div class='col'>
 
 {%include 'tweetTemplate/retweet.html'%}
-
-
-
-<button><span class='sticker'><i class='fas fa-share-alt' style=''></i></span> </button> 
-</p>
 </div>
 
+<div class='col'>
+<button class='no-border btn-link'><i class='fas fa-share-alt' style=''></i></button> 
+</div>
+</div>
 
+<hr />
 </div>
-</div>
+
 {%endfor%}
 </div>
 

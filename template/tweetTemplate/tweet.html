@@ -4,25 +4,14 @@
 
 {%block content%}
 <style>
-	@media(min-width: 600px){
-	.partD{
-		display: block;
-		border-lft: 1px solid #C0C0C0;
-	}
-	.bottomD{
-    rigt:250px;
-    z-index: 100000000;
-}
-.left{
-right:45%}
-}
+
 </style>
-<div id='body' class='contanerD' style=''>
+<div id='body' class='' style=''>
 {%if user.is_authenticated%}
-<p class='center' style='margin-top:8px'>
+<p class='center' style=''>
 <a class='normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='button border Btn-width' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Latest Tweets </button> </a>
 <a class='normal' href="{%url 'HomeTweetUrl' 'latest'%}">
-<button class='button border Btn-width' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> Home </button> </a> </p>
+<button class='button border Btn-width' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> Home </button> </a>
 
 </p>
 {%endif%}

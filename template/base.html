@@ -4,10 +4,8 @@
 <meta name='viewport' content='width=device-width initial-scale=1'>
 <head>
 <link rel='stylesheet' href="{%static 'css/bootstrap/bootstrap.min.css'%}" >
-<link rel='stylesheet' href="{%static 'css/acss/acss_basic.css'%}" >
+<link rel='stylesheet' href="{%static 'css/acss/acss.css'%}" >
 <link rel='stylesheet' href="{%static 'css/fontawesome_5/css/all.min.css'%}" >
-<link rel='stylesheet' href="{%static 'css/react.css'%}" >
-<link rel='stylesheet' href="{%static 'css/acss/acss_desktop.css'%}" >
 <script src="{%static 'js/react.production.min.js'%}"></script>
 <script src="{%static 'js/react-dom.production.min.js'%}"></script>
 <script src="{%static 'js/babel.min.js'%}"></script>
@@ -20,12 +18,9 @@
 --secondary-color:#07294D
 }
 {#1DA1F2}
-.header{
-word-spacing:25px;
 
-}
 
-.small{
+.sall{
 display:inline-block;
 height:25px;
 width:25px;
@@ -33,17 +28,11 @@ border-radius:200px;
 border:2px solid white;
 }
 
-body{
-background-color:white;
-font-size:12px;
-
-}
-
 p-bg-color{
 background:color:#1DA1F2 !important
 }
 
-.dropdown{
+.dropown{
     display: none;
 }
 
@@ -58,16 +47,17 @@ display:block !important
   
 {%endif%}
 
-<body>
+<body class=''>
 
-{%block body%}
+{%block header%}
+{%comment%}
 {%if user.is_anonymous%}
-<div class='heder backgrund nabar fied-top center wite box-border' style='background-color:white;border-raius:10px;justify-content:center;heiht:4.5cm;border:none'><h1 class='pcolor bold' >{%block header%}Parrot.com{%endblock%}</h1>
+<header class='heder backgrund nabar fied-top center wite box-border' style='background-color:white;border-raius:10px;justify-content:center;heiht:4.5cm;border:none'><h1 class='pcolor bold' >{%block header%}Parrot.com{%endblock%}</h1>
 
 <div style='display:inline'><a href="{%url 'account_login'%}"><button class='box button Btn-width widthD' style='backgound-color:red;idth:3.5cm;font-size:18px'>Log In</button></a></div>
 <div style='display:inline'><a href="{%url 'account_signup'%}"><button class='box button Btn-width
  widthD border pcolor' style='background-color:white;widh:3.5cm;font-size:18px'>Sign Up</button></a></div>
-</div>
+</header>
 {%endif%}
 
 
@@ -86,26 +76,43 @@ display:block !important
 </div>
 
 
-{% if user.is_authenticated%}
+{%endcomment%}
+{%endblock%}
+
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-sm-12 col-md-3 display-sm-none'>
+{%block sidebar%}
+
 {%include 'dropdown.html' %}
-{%endif%}
-
-<div class='container' style='padding:0px;magin-top:0px'>
-
-
-
 
 {%endblock%}
+</div>
+
+<div class='col-md-6 col-sm-12'>
 {%block content%}
 
 {%endblock content%}
+</div>
+
+<div class='col-md-3 col-sm-12'>
+{%block other%}
+This is other page
+{%endblock%}
+</div>
+
+
+</div>
+</div>
+
 {%block bottom%}
 <div class='bottom-side bottomD' style='font-size:24px;box-shadow:none;padding:15px;color:white' >
-{%endblock%}
 <a href="{%url 'CreateUrl'%}" class='normal white '>
 <i class='fas fa-pen'></i>
 </a>
 </div>
+{%endblock%}
 
 </body>
 <script>

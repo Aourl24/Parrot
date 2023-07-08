@@ -11,7 +11,7 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model=Image
         fields=['image']
-        widgets={'image':forms.ClearableFileInput(attrs={'multiple':True, 'id':'upload', 'class':'hide'})}
+        widgets={'image':forms.ClearableFileInput(attrs={'muliple':True, 'id':'upload', 'class':'hide'})}
         
 class FileForm(forms.ModelForm):
     class Meta:
