@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yb4n8-7q6rp_z*)cu&8n6rth=c4p_=7@+lmf(&$tcqn*$crfeo
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+AWS = False
 
 # Application definition
 
