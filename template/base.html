@@ -47,36 +47,34 @@ display:block !important
   
 {%endif%}
 
-<body class=''>
+<body class='display-md-none'>
 
 {%block header%}
-{%comment%}
-{%if user.is_anonymous%}
-<header class='heder backgrund nabar fied-top center wite box-border' style='background-color:white;border-raius:10px;justify-content:center;heiht:4.5cm;border:none'><h1 class='pcolor bold' >{%block header%}Parrot.com{%endblock%}</h1>
 
-<div style='display:inline'><a href="{%url 'account_login'%}"><button class='box button Btn-width widthD' style='backgound-color:red;idth:3.5cm;font-size:18px'>Log In</button></a></div>
-<div style='display:inline'><a href="{%url 'account_signup'%}"><button class='box button Btn-width
- widthD border pcolor' style='background-color:white;widh:3.5cm;font-size:18px'>Sign Up</button></a></div>
+{%if user.is_anonymous%}
+<header class='row center p-2 m-2' style=''>
+    <div class='col-12 sz-24 my-2'><i class='fab fa-twitter rounded border color-bg-p color-white p-2'></i></div>
+    <div class='col-6'><a href="{%url 'account_login'%}" class='btn btn-danger btn-block'>Log In </a></div>
+    <div class='col-6'><a href="{%url 'account_signup'%}" class='btn btn-block color-bg-p color-white' style=''>Sign Up</a></div>
 </header>
 {%endif%}
 
 
-<div class='sticky-top navbar box-borer up' style='font-size:24px;padding:7px;box-shadow:none;background-color:white;border-bottom:2px solid #DEF1FD'>
+<nav class='navbar sticky-top' style=''>
 
-<a href="{%url 'TweetUrl'%}" class='normal pcolor' ><i class='fas fa-home'></i> <span class='hide hideI'>Home </span> </a> 
-<a href="{%url 'TrendUrl'%}" class='normal pcolor'><i class='fas fa-search'></i> <span class='hide hideI'>Explore </span> </a>
-<a href="{%url 'NotificationUrl' %}"  class='normal pcolor' ><i class='fas fa-bell'></i>{%if request.user.notifications.unread.count != 0 %}<span hx-get="{%url 'NotificationUrl' %}" hx-trigger='once' class='small circle' style='font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white'>{{request.user.notifications.unread.count}}</span>
+<a href="{%url 'TweetUrl'%}" class='navbar-brand' ><i class='fas fa-home'></i> <span class='hide hideI'>Home </span> </a> 
+<a href="{%url 'TrendUrl'%}" class='navbar-brand'><i class='fas fa-search'></i> <span class='hide hideI'>Explore </span> </a>
+<a href="{%url 'NotificationUrl' %}"  class='navbar-brand' ><i class='fas fa-bell'></i>{%if request.user.notifications.unread.count%}<span hx-get="{%url 'NotificationUrl' %}" hx-trigger='once' class='rounded-circle' style='font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white'>{{request.user.notifications.unread.count}}</span>
 
 {%endif%}
 <span class='hide hideI'>Notification </span>
 </a>
 
-<a href="{%url 'chat' %}" class='normal pcolor'><i class='fas fa-envelope'></i> <span class='hide hideI'>Chat </span> </a>
-<a><img loading='lazy' src="{{request.user.profile.profile_photo.url}}" class='avar small' onclick='show()'> <span class='hide pcolor hideI'>Profile </span> </a>
-</div>
+<a href="{%url 'chat' %}" class='navbar-brand'><i class='fas fa-envelope'></i> <span class='hide hideI'>Chat </span> </a>
+<a class='navbar-brand'>{%if request.user.is_authenticated%}<img loading='lazy' src="{{request.user.profile.profile_photo.url}}" class='container p-0 rounded-circle' style="width:30px;height:30px" onclick='show()'> {%else%} <i class='fas fa-bars color-p' onclick='show()'></i> {%endif%}<span class='hide pcolor hideI'>Profile </span> </a>
+</nav>
 
 
-{%endcomment%}
 {%endblock%}
 
 

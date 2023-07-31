@@ -1,147 +1,95 @@
 {%load custom_tags%}
-{%block body%}
 
-{%endblock%}
-<style>
-.allimage1 img{
-height:6cm;
-width:6cm;
-object-fit:contain;
-text-alin:center
-
-}
-</style>
 <div id ='tweetbox' style='' class='row sz-14'>
-{%for tweet in tweets %} 
-<div class='col-md-12 m-2 p-2' id='twetbox' style=''>
-{%if tweet.comment%}
-<div class='row m-2 sz-12' style=''>
-  <i class='far fa-comment'></i> Reply to {{tweet.comment.profile|title}}'s <a class='' style='' href='{{tweet.comment.get_absolute_url}}'> tweet </a>
-</div>
-{%endif%}
+  {%for tweet in tweets %} 
+    <div class='col-md-12 m-2 p-2 border-bottom' id='twetbox' style=''>
+      {%if tweet.comment%}
+        <div class='row m-2 sz-12 passive' style=''>
+          <div class='col'>
+            <i class='far fa-comment sz-16'></i> Reply to {{tweet.comment.profile|title}}'s 
+            <a class='' style='' href='{{tweet.comment.get_absolute_url}}'> tweet </a>
+          </div>
+        </div>
+      {%endif%}
 
-{%if tweet.retweet.all %}
-<div class='row m-2 sz-12' style=''>
-  <i class='fas fa-retweet'></i> <span class='color-t'> {{tweet.retweet.user.username|title}} Retweet </span> 
-</div>
-{%endif%}
+      {%if tweet.retweet.all %}
+        <div class='row m-2 sz-12 passive' style=''>
+          <i class='fas fa-retweet'></i> 
+          <span class='color-t'> {{tweet.retweet.user.username|title}} Retweet </span> 
+        </div>
+      {%endif%}
 
-<div class='row'>
-  <div class='col' style='text-align:right' hx-get="{%url 'OptionUrl' %}" hx-swap='innerHTML' hx-target='#optionholder{{tweet.id}}' hx-include='#on{{tweet.id}}'> 
-    <span class=''>  <i class='fas fa-ellipsis-v'></i> </span> 
-    <span id='optionholder{{tweet.id}}'> </span>
-  </div>
-  <div class='col-10 order-first'>
-    <span class='border p-2 rounded'>
-    <a href="{{tweet.profile.get_absolute_url}}" >
-      <img class='img rounded-circle' style='width:20px;height:20px' loading='lazy' src={{tweet.profile.profile_photo.url}}  >
-    </a>
-    {{tweet.profile|title}} <a href="{{tweet.profile.get_absolute_url}}" ><span class='desize pasive pcolor' style=''>/{{tweet.profile.user.username|lower}}</span></a>
-  </span>
-<span class='p-2' style=''> {{tweet.date|timesince}}</span>
-  </div>
-</div>
+      <div class='row'>
+        <div class='col-2'>
+          <a href="{{tweet.profile.get_absolute_url}}" >
+            <img class='container rounded-circle p-0' style='width:50px;height:50px;object-fit:cover' loading='' src={{tweet.profile.profile_photo.url}}  >
+          </a>
+        </div>
+        <div class='col'>
+          <div class='row'>
+            <div class='col'>
+              <span class=''>
+                {{tweet.profile|title}} <a href="{{tweet.profile.get_absolute_url}}" ><span class='desize pasive pcolor' style=''>/{{tweet.profile.user.username|lower}}</span></a>
+              </span>
+              <span class='' style=''> {{tweet.date|timesince}}</span>
+            </div>
 
+            <div class='col-1' style='text-align:right;float:right' hx-get="{%url 'OptionUrl' %}" hx-swap='innerHTML' hx-target='#optionholder{{tweet.id}}' hx-include='#on{{tweet.id}}'> 
+              <span class=''>  <i class='fas fa-ellipsis-v'></i> </span> 
+              <span id='optionholder{{tweet.id}}'> </span>
+            </div>    
+          </div>
 
-<div class='row m-2 my-3 sz-16' style=''>
-<a class='color-black' href='{{tweet.get_absolute_url}}' >
+          <p class='' style=''>
+            <a class='color-black' href='{{tweet.get_absolute_url}}' >
+            {{tweet.body|truncatechars:':280'}}
+            </a>
+          </p>
 
-{{tweet.body|truncatechars:':280'}}
+          {%if tweet.image.all%}
+            <div class='row'>
+              {%for img in tweet.image.all%}
 
-</a>
+              {%endfor%}
+            </div>
+          {%endif%}
 
-</div>
+          {%if tweet.file.all%}
+            {%for file in tweet.file.all|slice:'1' %}
+              <div class='center' onclick="$('#vid')[0].play()">
+                <video id='vid' class='box border curve' style='height:6cm;width:100%'>
+                  <source src='{{file.file.url}}' >
+                </video>
+              </div>
+            {%endfor%}
+          {%endif%}
 
-{%if tweet.image.all%}
+          <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
+          <input id='tt{{tweet.id}}' type='hidden' value={{tweet.id}} name='retweet' type='hiddn' >
 
-{%if tweet.image.count == 1 %}
+          <div class='row my-2'>
+            <div class='col'>
+              <a href="{{tweet.get_absolute_url}}?#holder"><button class='no-border btn-link'><i class='far fa-comment' ></i> {{tweet.tweet.count}} </button></a>
+            </div>
 
+            <div class='col'>
+              {%include 'tweetTemplate/like.html'%}
+            </div>
+            <div class='col'>
 
+              {%include 'tweetTemplate/retweet.html'%}
+            </div>
 
-<div class='box boder cener' id='leave' style=''>
-
-{%for img in tweet.image.all%}
-{%if img.image  %}
-
-<div class='alliage allimage1  box border center' style='wdth:3cm;heght:3cm;padding:0px;margn:2px;border:none;fex-bais:4cm; flex-gow:2;heiht:6cm'>
-<a href='{{img.get_absolute_url}}' class='normal' style=''>
-<img src={{img.image.url}}  loading='lazy' id={{img.id}} class='box-border' style=';width:100%;height:50%;padding:0px;border:none;box-shadow:none;boder-radius:3px'/>
-</a>
-</div>
-
-{%endif%}
-{%endfor%}
-
-
-
-</div>
-
-{%else%}
-
-<div class='box-border flex-wrap' id='leave' style=';border:none;box-shadow:none;padding:0px;width:100%;height:auto;'>
-
-{%for img in tweet.image.all|slice:'4' %}
-
-{%if img.image  %}
-
-<div class='' style='flex-grow:2;flex-basis:3cm;height:auto;width:3cm;max-heght:6cm'>
-<a href='{{img.get_absolute_url}}' class='normal' style=''>
-<div class='allimage b' style='wdth:3cm;heght:3cm;padding:0px;margin:2px;border:none;flex-bais:4cm; flex-gow:2'>
-<img src={{img.image.url}}  loading='lazy' id={{img.id}} class='box-border' style=';width:100%;heiht:;padding:0px;border:none;box-shadow:none;border-radius:3px'/>
-</div>
-
-</a>
-</div>
-
-{%endif%}
-
-{%endfor%}
-</div>
-{%endif%}
-{%elif tweet.file.all%}
-{%for file in tweet.file.all|slice:'1' %}
-<div class='center' onclick="$('#vid')[0].play()">
-<video id='vid' class='box border curve' style='height:6cm;width:100%'>
-<source src='{{file.file.url}}' >
-</video>
-</div>
-{%endfor%}
-{%endif%}
-
-
-
-<input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
-<input id='tt{{tweet.id}}' type='hidden' value={{tweet.id}} name='retweet' type='hiddn' >
-
-<div class='row my-2'>
-
-<div class='col'>
-<a href="{{tweet.get_absolute_url}}?#holder"><button class='no-border btn-link'><i class='far fa-comment' ></i> {{tweet.tweet.count}} </button></a>
+            <div class='col'>
+              <button class='no-border btn-link'><i class='fas fa-share-alt' style=''></i></button> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%endfor%}
 </div>
 
-<div class='col'>
-{%include 'tweetTemplate/like.html'%}
-</div>
-<div class='col'>
-
-{%include 'tweetTemplate/retweet.html'%}
-</div>
-
-<div class='col'>
-<button class='no-border btn-link'><i class='fas fa-share-alt' style=''></i></button> 
-</div>
-</div>
-
-<hr />
-</div>
-
-{%endfor%}
-</div>
-
-
-
-
-</div>
 
 <script>
         document.body.addEventListener('htmx:configRequest', (e) => {
@@ -161,5 +109,4 @@ function Show(x){
 <div class='circle rotate htmx-indicator' style='position:absolute;margin-left:50%;display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;'> </div>
 </div>
 {%endif%}
-
 
