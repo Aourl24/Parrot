@@ -307,6 +307,7 @@ def CommentView(request):
         
 def TrendingView(request):
     Most=[]
+    template = 'tweetTemplate/trending.html'
     tweets=Tweet.objects.all()
     
     for tweet in tweets:
@@ -316,9 +317,11 @@ def TrendingView(request):
     Top=sorted(Most,key=lambda i: Most.count(i), reverse=True)
     Top.sort()
     Top=set(Top)
-    
+    if 'HX-Request' in request.headers:
+        template = 'tweetTemplate/trendbox.html'
+
     context=dict(trends=list(Top)[:10])
-    return render(request, 'tweetTemplate/trending.html', context)
+    return render(request, template , context)
         
 def TrendingRedirect(request, word):
     tweets=Tweet.objects.filter(body__icontains=word)

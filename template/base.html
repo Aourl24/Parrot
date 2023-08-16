@@ -1,21 +1,27 @@
 {%load static %}
 {%load custom_tags%}
 <html>
-<meta name='viewport' content='width=device-width initial-scale=1'>
-<head>
-<link rel='stylesheet' href="{%static 'css/bootstrap/bootstrap.min.css'%}" >
-<link rel='stylesheet' href="{%static 'css/acss/acss.css'%}" >
-<link rel='stylesheet' href="{%static 'css/fontawesome_5/css/all.min.css'%}" >
-<script src="{%static 'js/react.production.min.js'%}"></script>
-<script src="{%static 'js/react-dom.production.min.js'%}"></script>
-<script src="{%static 'js/babel.min.js'%}"></script>
-<script src="{%static 'js/htmx.min.js'%}"></script>
-<script src="{%static 'js/jquery.min.js'%}"></script>
-</head>
-<style>
-:root{
+    <meta content="width=device-width initial-scale=1" name="viewport"/>
+    <head>
+        <link href="{%static 'css/bootstrap5/css/bootstrap.min.css'%}" rel="stylesheet"/>
+        <link href="{%static 'css/acss/acss.css'%}" rel="stylesheet"/>
+        <link href="{%static 'css/fontawesome_5/css/all.min.css'%}" rel="stylesheet"/>
+        <script src="{%static 'js/react.production.min.js'%}">
+        </script>
+        <script src="{%static 'js/react-dom.production.min.js'%}">
+        </script>
+        <script src="{%static 'js/babel.min.js'%}">
+        </script>
+        <script src="{%static 'js/htmx.min.js'%}">
+        </script>
+        <script src="{%static 'js/jquery.min.js'%}">
+        </script>
+    </head>
+    <style>
+        :root{
 --primary-color: #1DA1F2;
---secondary-color:#07294D
+--secondary-color:#07294D;color;
+--tertiary-color:gray;
 }
 {#1DA1F2}
 
@@ -40,85 +46,129 @@ background:color:#1DA1F2 !important
 display:block !important
 }
 
-</style>
+a{
+    text-decoration: none;
+}
+    </style>
+    {%if user.profile.mode == 'black'%}
+    <link css="" dark.css'%}'="" href="{%static " rel="stylesheet"/>
+    {%endif%}
+    <body class="display-d-none">
+        {%block header%}
 
-{%if user.profile.mode == 'black'%}
-    <link rel='stylesheet' href='{%static 'css/dark.css'%}' >
-  
-{%endif%}
-
-<body class='display-md-none'>
-
-{%block header%}
-
-{%if user.is_anonymous%}
-<header class='row center p-2 m-2' style=''>
-    <div class='col-12 sz-24 my-2'><i class='fab fa-twitter rounded border color-bg-p color-white p-2'></i></div>
-    <div class='col-6'><a href="{%url 'account_login'%}" class='btn btn-danger btn-block'>Log In </a></div>
-    <div class='col-6'><a href="{%url 'account_signup'%}" class='btn btn-block color-bg-p color-white' style=''>Sign Up</a></div>
-</header>
-{%endif%}
-
-
-<nav class='navbar sticky-top' style=''>
-
-<a href="{%url 'TweetUrl'%}" class='navbar-brand' ><i class='fas fa-home'></i> <span class='hide hideI'>Home </span> </a> 
-<a href="{%url 'TrendUrl'%}" class='navbar-brand'><i class='fas fa-search'></i> <span class='hide hideI'>Explore </span> </a>
-<a href="{%url 'NotificationUrl' %}"  class='navbar-brand' ><i class='fas fa-bell'></i>{%if request.user.notifications.unread.count%}<span hx-get="{%url 'NotificationUrl' %}" hx-trigger='once' class='rounded-circle' style='font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white'>{{request.user.notifications.unread.count}}</span>
-
-{%endif%}
-<span class='hide hideI'>Notification </span>
-</a>
-
-<a href="{%url 'chat' %}" class='navbar-brand'><i class='fas fa-envelope'></i> <span class='hide hideI'>Chat </span> </a>
-<a class='navbar-brand'>{%if request.user.is_authenticated%}<img loading='lazy' src="{{request.user.profile.profile_photo.url}}" class='container p-0 rounded-circle' style="width:30px;height:30px" onclick='show()'> {%else%} <i class='fas fa-bars color-p' onclick='show()'></i> {%endif%}<span class='hide pcolor hideI'>Profile </span> </a>
-</nav>
-
-
-{%endblock%}
-
-
-<div class='container-fluid'>
-<div class='row'>
-<div class='col-sm-12 col-md-3 display-sm-none'>
-{%block sidebar%}
+{%if user.is_aonymous%}
+        <header class="row center p-2 m-2" style="">
+            <div class="col-12 sz-24 my-2">
+                <i class="fab fa-twitter rounded border color-bg-p color-white p-2">
+                </i>
+            </div>
+            <div class="col-6">
+                <a class="btn btn-danger btn-block" href="{%url 'account_login'%}">
+                    Log In
+                </a>
+            </div>
+            <div class="col-6">
+                <a class="btn btn-block color-bg-p color-white" href="{%url 'account_signup'%}" style="">
+                    Sign Up
+                </a>
+            </div>
+        </header>
+        {%endif%}
+        <nav class="navbar display-md-none fixed-bottom" style="">
+            <a class="navbar-brand" href="{%url 'TweetUrl'%}">
+                <i class="fas fa-home">
+                </i>
+                <span class="display-sm-none">
+                    Home
+                </span>
+            </a>
+            <a class="navbar-brand" href="{%url 'TrendUrl'%}">
+                <i class="fas fa-search">
+                </i>
+                <span class="display-sm-none">
+                    Explore
+                </span>
+            </a>
+            <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
+                <i class="fas fa-bell">
+                </i>
+                {%if request.user.notifications.unread.count%}
+                <span class="rounded-circle" hx-get="{%url 'NotificationUrl' %}" hx-trigger="once" style="font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white">
+                    {{request.user.notifications.unread.count}}
+                </span>
+                {%endif%}
+                <span class="display-sm-none">
+                    Notification
+                </span>
+            </a>
+            <a class="navbar-brand" href="{%url 'chat' %}">
+                <i class="fas fa-envelope">
+                </i>
+                <span class="display-sm-none">
+                    Chat
+                </span>
+            </a>
+            <a class="navbar-brand">
+                {%if request.user.is_authenticated%}
+                <img class="container p-0 rounded-circle" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px">
+                    {%else%}
+                    <i class="fas fa-bars color-p" onclick="show()">
+                    </i>
+                    {%endif%}
+                    <span class="hide pcolor hideI">
+                        Profile
+                    </span>
+                </img>
+            </a>
+        </nav>
+        {%endblock%}
+        <div class="container p-2">
+            <div class="row">
+                <div class="col-sm-12 col-md-2 display-sm-none">
+                    {%block sidebar%}
 
 {%include 'dropdown.html' %}
 
 {%endblock%}
-</div>
-
-<div class='col-md-6 col-sm-12'>
-{%block content%}
+                </div>
+                <div class="col-md-6 col-sm-12 p-3">
+                    {%block content%}
 
 {%endblock content%}
-</div>
-
-<div class='col-md-3 col-sm-12'>
-{%block other%}
-This is other page
+                </div>
+                <div class="col-md col-sm-12 display-sm-none">
+                    {%block other%}
+                    <div class="row">
+                            <div class="col">
+                                <input type="search" class="form-control" placeholder="search" />
+                            </div>
+                        </div>
+                        <br />
+                    <div class="p-2 border rounded" hx-get="{%url 'TrendUrl' %}" hx-swap="beforeend" hx-trigger="load">
+                        
+                        <div class="row">
+                            <div class="col sz-20 bold">
+                                Trends for you
+                            </div>
+                        </div>
+                        <br />
+                    </div>
 {%endblock%}
-</div>
-
-
-</div>
-</div>
-
-{%block bottom%}
-<div class='bottom-side bottomD' style='font-size:24px;box-shadow:none;padding:15px;color:white' >
-<a href="{%url 'CreateUrl'%}" class='normal white '>
-<i class='fas fa-pen'></i>
-</a>
-</div>
-{%endblock%}
-
-</body>
-<script>
-
-
-function show(){
+                </div>
+            </div>
+        </div>
+        {%block bottom%}
+        <div class="bottom-side bottomD" style="font-size:24px;box-shadow:none;padding:15px;color:white">
+            <a class="normal white " href="{%url 'CreateUrl'%}">
+                <i class="fas fa-pen">
+                </i>
+            </a>
+        </div>
+        {%endblock%}
+    </body>
+    <script>
+        function show(){
 $('#dropdown').toggleClass('show')
 }
-
-</script>
+    </script>
 </html>

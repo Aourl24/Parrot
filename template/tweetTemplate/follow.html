@@ -1,20 +1,20 @@
-<p class='center' id='{{profile.id}}cc'>
+<div class='row' id='{{profile.id}}cc'>
 {%if User in profile.follower.all%}
-<button class='normal box' disabled style='background-color:#C0C0C0;color:white;width:3.5cm;padding:5px;font-size:20px'>
+<button class='btn w-100' disabled style='background-color:#C0C0C0;color:white;'>
 Follow
 </button>
 
-<button class='normal box' style='background-color:red;color:white;width:3.5cm;padding:5px;font-size:20px' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
+<button class='btn w-100' style='background-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
 UnFollow
 </button>
 
 {%else%}
-<button class='normal box' style='background-color:red;color:white;width:3.5cm;padding:5px;font-size:20px' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
+<button class='btn w-100' style='background-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
 Follow
 </button>
 
-<button class='normal box' disabled style='background-color:#C0C0C0;color:white;width:3.5cm;padding:5px;font-size:20px'>
+<button class='btn w-100' disabled style='background-color:#C0C0C0;color:white;'>
 UnFollow
 </button>
 {%endif%}
-</p>
+</div>

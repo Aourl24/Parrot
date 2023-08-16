@@ -1,5 +1,5 @@
 {%if user.is_authenticated%}
-<button class='btn-link btn-link no-border' hx-get="{%url 'TweetUrl'%}" hx-include='#tt{{tweet.id}}' hx-swap='outerHTML' style='color:#757E2B' onClick=''>
+<button class='btn btn-link no-border sz-12' hx-get="{%url 'TweetUrl'%}" hx-include='#tt{{tweet.id}}' hx-swap='outerHTML' style='color:#757E2B' onClick=''>
 {%if prof in tweet.retweet.all%}
 <i id='{{tweet.id}}' style='color:#757E2B' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}}
 {%else%}
@@ -9,7 +9,7 @@
 {%endif%}
 </span></button>
 {%else%}
-<button class='btn-link no-border' style='color:#757E2B' onClick=''>
+<button class='color-t color-bg-white btn no-border sz-12' style='color:#757E2B' onClick=''>
 <span class='sticker'>
 {%if prof in tweet.retweet.all%}
 <i id='{{tweet.id}}' style='color:#757E2B' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}}

@@ -2,12 +2,13 @@
 
 body{
     color:white!important;
-    background-color: black!important;
+    background-color: 121212!important;
 }
 
 
 .bg-light{
      background-color: #34282C!important;
+     background-color: #222222!important;
 }
 
 .color-white{
@@ -42,4 +43,8 @@ body{
 }
 .color-bg-t{
 	
+}
+
+.border{
+    border-color: #34282C;
 }

@@ -1,0 +1,9 @@
+{%for trend in trends%}
+<div class="row">
+<div class="col-12"><a class='color-black sz-14' href="{%url 'TrendRed' trend %}" >{{trend}}</a></div>
+<div class='color-t sz-12 col-12'><span class='passive' hx-get="{%url 'TrendRed' trend %}" hx-trigger='load'></span> tweets</div>
+
+</div>
+<br>
+
+{%endfor%}

@@ -1,11 +1,53 @@
-<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto color-bg-white color-bg-dark-light m-0 p-3 p-md-1 rounded sz-16 position-fixed bold" style="overlow:auto">
+<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed" style="overlow:auto">
     {%if user.is_authenticated%}
-    <img class='img rounded' style='width:70px;height:70px;magin-top:-10px' src={{request.user.profile.profile_photo.url}}  /> 
-        <div class=''> <a href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class=' mesize passive' style='padding:3px'>{{request.user.profile.follower.count}}</span> Followers </a> | <a href="{%url 'FollowListUrl' request.user.profile.id%}" ><span class=' mesize passive' style='padding:3px'>{{request.user.profile.follow.count}}</span> Following  </a> </div>
+    <img class='img-fluid rounded' style='width:50px;height:50px;magin-t' src={{request.user.profile.profile_photo.url}}  /> 
+        <div class='row'> <a class="col sz-12 color-black" href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class='sz-12 color-t' style=''>{{request.user.profile.follower.count}}</span> Followers </a> | <a href="{%url 'FollowListUrl' request.user.profile.id%}" class="col color-black sz-12"><span class='sz-12 color-t' style=''>{{request.user.profile.follow.count}}</span> Following  </a> </div>
         {%endif%}
+        <div class="row m-2 py-2">
+                <a class="navbar-brand" href="{%url 'TweetUrl'%}">
+                <i class="fas fa-home">
+                </i>
+                <span class="">
+                    Home
+                </span>
+            </a>
+        </div>
+        <div class="row m-2 py-2">
+            <a class="navbar-brand" href="{%url 'TrendUrl'%}">
+                <i class="fas fa-search">
+                </i>
+                <span class="">
+                    Explore
+                </span>
+            </a>
+        </div>
+        <div class="row m-2 py-2">
+            <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
+                <i class="fas fa-bell">
+                </i>
+                {%if request.user.notifications.unread.count%}
+                <span class="rounded-circle" hx-get="{%url 'NotificationUrl' %}" hx-trigger="once" style="font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white">
+                    {{request.user.notifications.unread.count}}
+                </span>
+                {%endif%}
+                <span class="">
+                    Notification
+                </span>
+            </a>
+        </div>
+        <div class="row m-2 py-2">
+            <a class="navbar-brand" href="{%url 'chat' %}">
+                <i class="fas fa-envelope">
+                </i>
+                <span class="">
+                    Chat
+                </span>
+            </a>
+        </div>
+
 
                 <div class="row m-2 py-2">
-                    <a href='{{request.user.profile.get_absolute_url}}' class=''>
+                    <a href='{{request.user.profile.get_absolute_url}}' class='navbar-brand'>
                         <i class='fas fa-user'></i>
     
                         Profile
@@ -13,7 +55,7 @@
                 </div>
             
                 <div class='row m-2 py-2'>
-                    <a href="{%url 'SaveUrl' %}" class=''>
+                    <a href="{%url 'SaveUrl' %}" class='navbar-brand'>
                         
                         <i class='fas fa-box pcolor'></i>
                         Saved Tweets
@@ -22,7 +64,7 @@
                 </div>
             
                 <div class='row m-2 py-2'>
-                    <a href='' class=''>
+                    <a href='' class='navbar-brand'>
                         
                         <i class='fas fa-user pcolor'></i>
                         Settings
@@ -31,7 +73,7 @@
                 </div>
             
                 <div class='row m-2 py-2'>
-                    <a href='' class=''>
+                    <a href='' class='navbar-brand'>
                         
                         <i class='fas fa-question pcolor'></i>
                         Help
@@ -41,7 +83,7 @@
             
                 <div class='row m-2 py-2'>
                 <form method='GET' action="{%url 'ModeUrl' %}">
-                    <button class='btn-link no-border color-bg-black color-white rounded' type='radio' name='dark' value='{{request.path_info}}'>
+                    <button class='btn color-bg-black color-white'  name='dark' value='{{request.path_info}}'>
                         
                         <i class='fas fa-moon pcolor'></i>
                         Mode
@@ -55,7 +97,7 @@
             {%if user.is_authenticated%}
             
                 <div>
-                    <a href="{%url 'account_logout'  %}" class=''>
+                    <a href="{%url 'account_logout'  %}" class='navbar-brand'>
                         
                         <i class='fas fa-door-open pcolor'></i>
                         Log-Out

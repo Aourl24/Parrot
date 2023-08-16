@@ -1,53 +1,70 @@
 {%load custom_tags%}
-
-<div id ='tweetbox' style='' class='row sz-14'>
-  {%for tweet in tweets %} 
-    <div class='col-md-12 m-2 p-2 border-bottom' id='twetbox' style=''>
-      {%if tweet.comment%}
-        <div class='row m-2 sz-12 passive' style=''>
-          <div class='col'>
-            <i class='far fa-comment sz-16'></i> Reply to {{tweet.comment.profile|title}}'s 
-            <a class='' style='' href='{{tweet.comment.get_absolute_url}}'> tweet </a>
+<div class="row sz-14" id="tweetbox" style="">
+  {%for tweet in tweets %}
+    <div class="col-md-12 m-2 p-2 border rounded col-sm-12" id="twetbox" style="">
+      
+      {%comment%}
+        {%if tweet.comment%}
+          <div class="row m-2 sz-12 passive" style="">
+            <div class="col">
+                <i class="far fa-comment sz-16">
+                </i>
+                Reply to {{tweet.comment.profile|title}}'s
+                <a class="" href="{{tweet.comment.get_absolute_url}}" style="">
+                    tweet
+                </a>
+            </div>
           </div>
-        </div>
-      {%endif%}
+        {%endif%}
 
-      {%if tweet.retweet.all %}
-        <div class='row m-2 sz-12 passive' style=''>
-          <i class='fas fa-retweet'></i> 
-          <span class='color-t'> {{tweet.retweet.user.username|title}} Retweet </span> 
-        </div>
-      {%endif%}
+        {%if tweet.retweet.all %}
+          <div class="row m-2 sz-12 color-t" style="">
+            <i class="fas fa-retweet">
+            </i>
+            <span class="color-t">
+                {{tweet.retweet.user.username|title}} Retweet
+            </span>
+          </div>
+        {%endif%}
+      {%endcomment%}
 
-      <div class='row'>
-        <div class='col-2'>
-          <a href="{{tweet.profile.get_absolute_url}}" >
-            <img class='container rounded-circle p-0' style='width:50px;height:50px;object-fit:cover' loading='' src={{tweet.profile.profile_photo.url}}  >
+      <div class="row">
+        <div class="col-md-1 col-sm-2">
+          <a href="{{tweet.profile.get_absolute_url}}">
+            <img class="img-fluid rounded-circle p-0 m-0" loading="" src="{{tweet.profile.profile_photo.url}}" style="width:35px;height:35px;object-fit:cover"/>
           </a>
         </div>
-        <div class='col'>
-          <div class='row'>
-            <div class='col'>
-              <span class=''>
-                {{tweet.profile|title}} <a href="{{tweet.profile.get_absolute_url}}" ><span class='desize pasive pcolor' style=''>/{{tweet.profile.user.username|lower}}</span></a>
+        <div class="col col-sm">
+          <div class="row ">
+            <div class="col ">
+              <span class="bold sz-14">
+                  {{tweet.profile|title}}
               </span>
-              <span class='' style=''> {{tweet.date|timesince}}</span>
+              <a href="{{tweet.profile.get_absolute_url}}" >
+                  <span class="color-t sz-14" style="">
+                      /{{tweet.profile.user.username|lower}}
+                  </span>
+              </a>
+              <span class="sz-12" style="">
+                  {{tweet.date|timesince}}
+              </span>
             </div>
-
-            <div class='col-1' style='text-align:right;float:right' hx-get="{%url 'OptionUrl' %}" hx-swap='innerHTML' hx-target='#optionholder{{tweet.id}}' hx-include='#on{{tweet.id}}'> 
-              <span class=''>  <i class='fas fa-ellipsis-v'></i> </span> 
-              <span id='optionholder{{tweet.id}}'> </span>
-            </div>    
+            <div class="col-1 sz-12" hx-get="{%url 'OptionUrl' %}" hx-include="#on{{tweet.id}}" hx-swap="innerHTML" hx-target="#optionholder{{tweet.id}}" style="tet-align:right;foat:right">
+              <span class="">
+                  <i class="fas fa-ellipsis-h">
+                  </i>
+              </span>
+              <span id="optionholder{{tweet.id}}">
+              </span>
+            </div>
           </div>
-
-          <p class='' style=''>
-            <a class='color-black' href='{{tweet.get_absolute_url}}' >
-            {{tweet.body|truncatechars:':280'}}
-            </a>
-          </p>
-
+          <div class="sz-14" style="">
+              <a class="color-black" href="{{tweet.get_absolute_url}}">
+                  {{tweet.body|truncatechars:':280'}}
+              </a>
+          </div>
           {%if tweet.image.all%}
-            <div class='row'>
+            <div class="row">
               {%for img in tweet.image.all%}
 
               {%endfor%}
@@ -56,43 +73,58 @@
 
           {%if tweet.file.all%}
             {%for file in tweet.file.all|slice:'1' %}
-              <div class='center' onclick="$('#vid')[0].play()">
-                <video id='vid' class='box border curve' style='height:6cm;width:100%'>
-                  <source src='{{file.file.url}}' >
-                </video>
+              <div class="center" onclick="$('#vid')[0].play()">
+                <video class="box border curve" id="vid" style="height:6cm;width:100%">
+                  <source src="{{file.file.url}}" />
+                  </video>
               </div>
             {%endfor%}
           {%endif%}
 
-          <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
-          <input id='tt{{tweet.id}}' type='hidden' value={{tweet.id}} name='retweet' type='hiddn' >
-
-          <div class='row my-2'>
-            <div class='col'>
-              <a href="{{tweet.get_absolute_url}}?#holder"><button class='no-border btn-link'><i class='far fa-comment' ></i> {{tweet.tweet.count}} </button></a>
+          <input id="on{{tweet.id}}" name="like" type="hidden" value="{{tweet.id}}"/>
+          <input id="tt{{tweet.id}}" name="retweet" type="hidden" value="{{tweet.id}}"/>
+          <div class="row sz-12 align-items-center">
+            <div class="col">
+                <a href="{{tweet.get_absolute_url}}?#holder">
+                    <button class="btn no-border color-t color-bg-white sz-12">
+                        <i class="far fa-comment">
+                        </i>
+                        {{tweet.tweet.count}}
+                    </button>
+                </a>
+            </div>
+            <div class="col">
+                {%include 'tweetTemplate/like.html'%}
+            </div>
+            <div class="col">
+                {%include 'tweetTemplate/retweet.html'%}
+            </div>
+            <div class="col">
+              <button class="no-border btn color-t color-bg-white sz-12">
+                <i class="fas fa-eye"></i> 250.1k
+              </button>
+            </div>
+            <div class="col">
+                <button class="no-border btn color-t color-bg-white sz-12">
+                    <i class="fas fa-share" style=""> 
+                    </i>
+                </button>
             </div>
 
-            <div class='col'>
-              {%include 'tweetTemplate/like.html'%}
-            </div>
-            <div class='col'>
-
-              {%include 'tweetTemplate/retweet.html'%}
-            </div>
-
-            <div class='col'>
-              <button class='no-border btn-link'><i class='fas fa-share-alt' style=''></i></button> 
-            </div>
           </div>
-        </div>
+        </div>        
       </div>
     </div>
   {%endfor%}
-</div>
 
-
-<script>
-        document.body.addEventListener('htmx:configRequest', (e) => {
+        {%if tweets.has_next%}
+        <div class="cener" hx-get="?page={{tweets.next_page_number}}" hx-swap="innerHTML" hx-trigger="revealed" style="posiion:absolute;magin-left:50%">
+            <div class="circle rotate htmx-indicator" style="position:absolute;margin-left:50%;display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;">
+            </div>
+        </div>
+        {%endif%}
+        <script type="text/javascript">
+            document.body.addEventListener('htmx:configRequest', (e) => {
           e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
           })
 
@@ -100,13 +132,5 @@
 function Show(x){
   document.getElementById(`optionholder${x}`).style.display='block'
 }
-   
-     
-</script>
-
-{%if tweets.has_next%}
-<div class='cener' style='posiion:absolute;magin-left:50%' hx-get="?page={{tweets.next_page_number}}"  hx-swap='innerHTML' hx-trigger='revealed'>
-<div class='circle rotate htmx-indicator' style='position:absolute;margin-left:50%;display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;'> </div>
+        </script>
 </div>
-{%endif%}
-
