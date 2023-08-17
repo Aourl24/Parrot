@@ -7,19 +7,19 @@
 
 </style>
 <div id='body' class='' style=''>
-	<h6 class="bold">Home </h6>
-	<br />
-{%if not user.is_authenticated%}
-<div class='row' style=''>
-<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Latest Tweets </button> </a>
+	<h6 class="bold display-sm-none">Home </h6>
+	<br class="display-sm-none"/>
+
+<div class='row sticky-top' style=''>
+<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100 border' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Latest Tweets </button> </a>
 <a class='normal col' href="{%url 'HomeTweetUrl' 'latest'%}">
 <button class='btn w-100' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> Home </button> </a>
 
 </div>
-{%endif%}
+
 
 {%if blank%}
-<div class='box boxD' style=''> OOps!!! , it seems your exposure is low Connect with people or click to explore trends <a href="{%url 'TrendUrl'%}"> Explore </a>  </div>
+<p class='mt-2 hide' style=''> OOps!!! , it seems your exposure is low Connect with people or click to explore trends <a href="{%url 'TrendUrl'%}"> Explore </a>  </p>
 
 
 <div class='box bcolor borer bolor' id='connect' hx-get="{%url 'FriendUrl'%}" hx-swap='innerHTML' hx-trigger='load' style="">

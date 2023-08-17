@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%block sidebar%}
+{%endblock%}
+{%block header%}
+
+{%endblock%}
+{%block other%}
+
+{%endblock%}
+{%block navbar%}
+{%endblock%}
+{%block content%}
+<br />
+<div class="row">
+	<div class="col sz-36">
+		<i class="fab fa-twitter" ></i>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col sz-48 bold">
+		Happening <br/> Now
+	</div>
+</div>
+
+<br />
+<div class="row my-2">
+	<div class="col sz-24 bold">
+		Join today
+	</div>
+</div>
+
+<div class="row m-2 mb-3">
+	<div class='col col border rounded h-100 center btn'>
+		<a href="" class="sz-18 color-black"><span class="text-danger"><i class="fab fa-google"></i></span> Sign up with Google </a>
+	</div>
+</div>
+
+<div class="row m-2">
+	<div class='col col border rounded h-100 center btn'>
+		<a href="" class="sz-18 color-black"><span class="color-p"> <i class="fab fa-twitter"></i> </span>Sign up with Twitter </a>
+	</div>
+</div>
+<div class="row">
+	<div class="col center">
+		or
+	</div>
+</div>
+<div class="row m-2">
+	<div class='col border rounded h-100 color-bg-p center btn'>
+		<a href="{% url 'account_signup'%}" class="color-white sz-18" class="sz-18"> Create Account </a>
+	</div>
+</div>
+
+<div class="row">
+	<div class='col sz-12'>
+		By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use
+	</div>
+</div>
+
+<br />
+<div class="row">
+	<div class='col bold'>
+		Already have an account?
+	</div>
+</div>
+
+<div class="row m-2">
+	<div class='col border rounded h-100 center btn'>
+		<a href="{% url 'account_login'%}" class="sz-18"> Sign in </a>
+	</div>
+</div>
+{%endblock%}

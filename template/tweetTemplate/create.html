@@ -1,4 +1,4 @@
-<div id='box'>
+<div id=''>
 <form method='post' action="{%url 'CreateUrl'%}" enctype="multipart/form-data">
 {%csrf_token%}
 
@@ -21,21 +21,22 @@
 {%endfor%}
 <hr>
 <p class='pcolor center' style='word-spacing:25px;font-size:22px'>
-<i class='fas fa-location-arrow'></i> 
-<button class='normal pcolor' type='button' onclick="Image()"> <i class='fas fa-image'></i></button> 
-<button class='normal pcolor' type='button' onclick='Video()'><i class='fas fa-video'></i></button>
+<i class='fas fa-location-arrow btn btn-link'></i> 
+<button class='btn btn-link' type='button' onclick="Image()"> <i class='fas fa-image'></i></button> 
+<button class='btn btn-link' type='button' onclick='Video()'><i class='fas fa-video'></i></button>
 
 <div id='imageName' class='cage center' ></div>
-<ul class='desize passive'>
+<ul class='sz-12'>
 <li> You can upload maximum of 4 images </li>
 <li> You can only upload a single video at once </li>
 <li> If you upload image and video together the video only will be display in your post</li>
 </ul>
  
-<div class='navbar fixed-bottom center' style='position:fixed;justify-content:center;border;background-color:#1DA1F2;color:white;text-align:center'>
+ <button class='btn color-bg-p color-white w-100' style=''>Tweet</button>
+
+<div class='navbar fixd-bottom center' style='position:fixed;justify-content:center;border;background-color:#1DA1F2;color:white;text-align:center'>
 
 {%block bottom%}
-<button class='center normal' style='text-align:center;font-size:18px;color:white'>Tweet</button>
 {%endblock%}
 </div>
 </div>
@@ -53,5 +54,7 @@ document.getElementById('video').click();
 $('#video').change(function(){name=this.files[0].name;console.log(name);$('#imageName').append(`file ${name} `)})
 }
 
-
+$(window).on('load',function(){
+	$('textarea').addClass('form-control')
+})
 </script>

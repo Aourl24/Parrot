@@ -24,7 +24,8 @@ border:none;
 
 
 
-<div class='box cve brder' style='border:none;padding:7px;box-shadow:none'>
+<div class='' style=''>
+{%comment%}
 {%if tweet.comment%}
 <p class='desize bold passive'><i class='fas fa-comment'></i> Reply to {{tweet.comment.profile|title}} <a class='normal' style='color:#1DA1F2' href='{{tweet.comment.get_absolute_url}}'>Tweet</a></p>
 {%endif%}
@@ -34,23 +35,24 @@ border:none;
 <i class='fas fa-retweet'></i> <span class='passive desize'> {{tweet.retweet.user.username|title}} Retweet </span> 
 </p>
 {%endif%}
+{%endcomment%}
 
 
+<div class='row align-items-center' style=''>
+<div class="col-1 p-2">
 
-<div class='flex-flow' style='align-items:center;gap:5px'>
-<div>
-<p>
 <a href="{{tweet.profile.get_absolute_url}}" >
-<img class='avatar' style='margin:0px' loading='lazy' src={{tweet.profile.profile_photo.url}}  >
+<img class='container rounded-circle m-0 p-0' style='width:40px;height:40px;object-fit:cover' loading='lazy' src={{tweet.profile.profile_photo.url}}  />
 </a>
-</p>
-</div>
-
-<div class='user mesiz'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><span class='desize passive'>/{{tweet.profile.user.username|lower}}</span>
-<span class='passive desize' style='flat:right'> • {{tweet.date|timesince}}</span>
-</div>
 
 </div>
+<div class="col">
+	{{tweet.profile}} 
+	<span class="sz-12 color-t">/{{tweet.profile.user.username|lower}}</span>
+</div>
+
+
+
 </div>
 
 
@@ -76,6 +78,11 @@ border:none;
 </div>
 
 {%endif%}
+<div class='user mesiz'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><span class='desize passive'>/{{tweet.profile.user.username|lower}}</span>
+<span class='passive desize' style='flat:right'> • {{tweet.date|timesince}}</span>
+</div>
+
+</div>
 
 {%endfor%}
 </div>
@@ -99,21 +106,38 @@ border:none;
 <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
 
 
-<p class='seperate' style='font-size:24px;word-spacing:28px'>
+<div class="row sz-12 align-items-center border-top border-bottom p-2">
+            <div class="col">
+                <a href="{{tweet.get_absolute_url}}?#holder">
+                    <button class="btn no-border color-t color-bg-white sz-12">
+                        <i class="far fa-comment">
+                        </i>
+                        {{tweet.tweet.count}}
+                    </button>
+                </a>
+            </div>
+            <div class="col">
+                {%include 'tweetTemplate/like.html'%}
+            </div>
+            <div class="col">
+                {%include 'tweetTemplate/retweet.html'%}
+            </div>
+            <div class="col">
+              <button class="no-border btn color-t color-bg-white sz-12">
+                <i class="fas fa-eye"></i> 250.1k
+              </button>
+            </div>
+            <div class="col">
+                <button class="no-border btn color-t color-bg-white sz-12">
+                    <i class="fas fa-share" style=""> 
+                    </i>
+                </button>
+            </div>
 
-<button><span class='sticker'><i class='far fa-comment'></i> {{tweet.tweet.count}} </span></button>
-
-{%include 'tweetTemplate/like.html'%}
-
-{%include 'tweetTemplate/retweet.html'%}
-
-<button><span class='sticker'><i class='fas fa-share-alt'></i></span> </button> 
-</p>
-
+       </div>
 
 
 </div>
-<hr>
 
 
 

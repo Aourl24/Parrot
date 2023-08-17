@@ -53,28 +53,32 @@ a{
     {%if user.profile.mode == 'black'%}
     <link css="" dark.css'%}'="" href="{%static " rel="stylesheet"/>
     {%endif%}
-    <body class="display-d-none">
+    <body class="display-d-none font-lato">
         {%block header%}
+        <header class="row center p-2 align-items-center display-md-none fixed-top" style="background-color: rgba(250, 250, 250, 0.8);">
 
-{%if user.is_aonymous%}
-        <header class="row center p-2 m-2" style="">
-            <div class="col-12 sz-24 my-2">
-                <i class="fab fa-twitter rounded border color-bg-p color-white p-2">
+               <div class="col-2" style="">
+                {%if request.user.is_authenticated%}
+                <img class="container p-0 rounded-circle" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px">
+                    {%else%}
+                    <i class="fas fa-bars color-p" onclick="show()">
+                    </i>
+                    {%endif%}
+                    <span class="hide pcolor hideI">
+                        Profile
+                    </span>
+                </img>
+            </a>
+        </div>
+            <div class="col">
+                <i class="fab fa-twitter sz-24">
                 </i>
             </div>
-            <div class="col-6">
-                <a class="btn btn-danger btn-block" href="{%url 'account_login'%}">
-                    Log In
-                </a>
-            </div>
-            <div class="col-6">
-                <a class="btn btn-block color-bg-p color-white" href="{%url 'account_signup'%}" style="">
-                    Sign Up
-                </a>
-            </div>
         </header>
-        {%endif%}
-        <nav class="navbar display-md-none fixed-bottom" style="">
+        {%endblock%}
+        <br />
+        {%block navbar%}
+        <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white" style="">
             <a class="navbar-brand" href="{%url 'TweetUrl'%}">
                 <i class="fas fa-home">
                 </i>
@@ -90,38 +94,27 @@ a{
                 </span>
             </a>
             <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
-                <i class="fas fa-bell">
+                <i class="far fa-bell">
                 </i>
                 {%if request.user.notifications.unread.count%}
-                <span class="rounded-circle" hx-get="{%url 'NotificationUrl' %}" hx-trigger="once" style="font-size:11px;width:;padding: 1px;15px;height:20px;width: 20px;text-align:center;margin-left:-7;margin-to: 7px;px;background-color:#ff00ff;color:white">
-                    {{request.user.notifications.unread.count}}
-                </span>
+                 <span class="rounded-circle sz-sm color-bg-p color-white center" hx-get="{%url 'NotificationUrl' %}" style="width:15px;height:15px;font-size:10px;display:inline-block;margin-left:-10px" hx-trigger="once">{{request.user.notifications.unread.count}} </span>
+
                 {%endif%}
                 <span class="display-sm-none">
                     Notification
                 </span>
             </a>
             <a class="navbar-brand" href="{%url 'chat' %}">
-                <i class="fas fa-envelope">
+                <i class="far fa-envelope">
                 </i>
                 <span class="display-sm-none">
                     Chat
                 </span>
             </a>
-            <a class="navbar-brand">
-                {%if request.user.is_authenticated%}
-                <img class="container p-0 rounded-circle" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px">
-                    {%else%}
-                    <i class="fas fa-bars color-p" onclick="show()">
-                    </i>
-                    {%endif%}
-                    <span class="hide pcolor hideI">
-                        Profile
-                    </span>
-                </img>
-            </a>
+         
         </nav>
         {%endblock%}
+
         <div class="container p-2">
             <div class="row">
                 <div class="col-sm-12 col-md-2 display-sm-none">
@@ -138,13 +131,14 @@ a{
                 </div>
                 <div class="col-md col-sm-12 display-sm-none">
                     {%block other%}
+                    <div class="position-fixed h-100" style="overflow:auto;">
                     <div class="row">
                             <div class="col">
                                 <input type="search" class="form-control" placeholder="search" />
                             </div>
                         </div>
                         <br />
-                    <div class="p-2 border rounded" hx-get="{%url 'TrendUrl' %}" hx-swap="beforeend" hx-trigger="load">
+                    <div class="p-2 border rounded" hx-get="{%url 'TrendUrl' %}" hx-swap="beforeend" hx-trigger="load" style="">
                         
                         <div class="row">
                             <div class="col sz-20 bold">
@@ -153,14 +147,15 @@ a{
                         </div>
                         <br />
                     </div>
+                </div>
 {%endblock%}
                 </div>
             </div>
         </div>
         {%block bottom%}
-        <div class="bottom-side bottomD" style="font-size:24px;box-shadow:none;padding:15px;color:white">
-            <a class="normal white " href="{%url 'CreateUrl'%}">
-                <i class="fas fa-pen">
+        <div class="fixed-bottom justify-content-end d-flex p-2" style="font-size:24px;box-shadow:none;color:white;z-index:10000;bottom:70px">
+            <a class="p-3 color-bg-p color-white rounded-circle m-2" href="{%url 'CreateUrl'%}">
+                <i class="fas fa-feather">
                 </i>
             </a>
         </div>

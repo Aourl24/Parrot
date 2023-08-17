@@ -1,10 +1,10 @@
 {%extends 'base.html'%}
 {% load notifications_tags %}
 {%block content%}
-<div class='box' style='border:none'>
+<div class='' style=''>
 <br>
-<div class='subject'>
-Your Notifications
+<div class='sz-18 bold'>
+Notifications
 </div>
 
 {% if user.notifications.unread %}
@@ -13,8 +13,8 @@ Your Notifications
 
 
 
-<p><div class='insize'>{{notification.actor}} {{notification.verb}}</div>
-<p><div class='passive'> on {{notification.timestamp}}</div></p>
+<p class="color-t"> <div class='color-black'>{{notification.actor}} {{notification.verb}}</div>
+<p><div class='sz-12 color-t'> on {{notification.timestamp}}</div></p>
 </hr></p>
 
 {%endfor%}
@@ -24,10 +24,10 @@ Your Notifications
 {% if notification.actor != request.user %}
 
 {%endif%}
-<p><div class='insize'>{{notification.actor|title}} {{notification.verb}}</div>
-<p><a class='passiv' href={{notification.description|safe}} > View Tweets</a>
-<p><div class='passive'> on {{notification.timestamp}}</div></p>
-</hr></p>
+<div class='insize'>{{notification.actor|title}} {{notification.verb}}</div>
+<a class='sz-14' href={{notification.description|safe}}>View Tweets</a>
+<div class='sz-12 color-t'> on {{notification.timestamp}}</div>
+
 <hr>
 {%endfor%}
 </div>

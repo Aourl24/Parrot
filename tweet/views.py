@@ -22,7 +22,11 @@ from random import shuffle
 def UserProfile(x):
     return Profile.objects.get(user__username=x) # get the users with the profile instance
  
- 
+
+def landingView(request):
+    template = "tweetTemplate/landing.html"
+    return render(request,template)
+    
 @login_required
 def CreateTweet(request, id=None):
     template='tweetTemplate/createTweet.html' 

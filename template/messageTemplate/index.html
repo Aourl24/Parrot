@@ -18,11 +18,20 @@
 
 
 Write a Message
-<form  class='fixed-bottom box' id='mes' hx-post='' hx-swap='none' >
+<form  class='box' id='mes' hx-post='' hx-swap='none' >
 {%csrf_token%}
 {%for field in form%}
-{{field.as_widget}}
+<p>{{field.as_widget}}</p>
 {%endfor%}
-<button onclick="">Send</button>
+<button onclick="" class="btn color-bg-p w-100">Send</button>
 </form>
+
+<script>
+$(window).on('load',function(){
+    $('textarea').addClass('form-control')
+})
+
+</script>
 {%endblock%}
+
+

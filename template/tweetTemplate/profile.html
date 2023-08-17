@@ -13,29 +13,29 @@ width:100%;
 }
 
 </style>
-<div class='ox'>
+<div class='sz-14'>
 {%if profile.cover_photo%}
-<div class='allimag' style='heiht:50%;boder:none' ><img src='{{profile.cover_photo.url}}'>
+<div class='' style='heiht:50%;boder:none' ><img class="container w-100" style="height:180px;object-fit:cover" src='{{profile.cover_photo.url}}'>
 </div>
 {%else%}
-<div class='allimage'><img src="media/profile.png" alt='This user has no Cover Photo' style='background-color:black;color:white;text-align:center;font-weight:bold;font-size:16px;'>
+<div class='w-100 color-bg-p' style="height:150px"><img src="media/profile.png" alt='This user has no Cover Photo' style='background-color:black;color:white;text-align:center;font-weight:bold;font-size:16px;'>
 </div>
 {%endif%}
 <div class='box' style='border:none'>
-<p><img class='avatar' style='margin-top:-20px;width:70px;height:70px' src={{profile.profile_photo.url}}  /> 
+<img class='container p-0 rounded-circle' style='margin-top:-20px;width:70px;height:70px;object-fit:cover' src={{profile.profile_photo.url}}  /> 
 
-<div class='insize pcolor'>{{profile.user.username|title}}</div>
-<div class='mesize passive'>@{{profile.user.username|title}}</div>
-<p></p>
+<div class='sz-24 bold'>{{profile.user.username|title}}</div>
+<div class='mesize color-t'>@{{profile.user.username|title}}</div>
 
-<p class='mesize passie'>{{profile.bio}}</p>
-<p class='desize passive'>Joined {{profile.date_joined}}</p>
-<p> <a href="{%url 'FollowerListUrl' profile.id %}" ><span class=' mesize passive'>{{profile.follower.count}} </span> Followers </a> | <a href="{%url 'FollowListUrl' profile.id %}" > <span class=' mesize passive'>{{profile.follow.count}}</span> Following  </a></p>
 
-</div>
+<div class='mesize passie'>{{profile.bio}}</div>
+<div class='desize color-t'>Joined {{profile.date_joined}}</div>
+<div> <a href="{%url 'FollowerListUrl' profile.id %}" ><span class=' mesize passive'>{{profile.follower.count}} </span> Followers </a> | <a href="{%url 'FollowListUrl' profile.id %}" > <span class=' mesize passive'>{{profile.follow.count}}</span> Following  </a></div>
 
 </div>
 
+</div>
+<br />
 {%if profile.user == request.user %}
 <a class='normal' href="{%url 'EditProfUrl'%}"><div class='lft ox bold center' style='color:#1DA1F2;coor:white;dispay:inline-block'>Edit Profile</div></a>
 {%else%}

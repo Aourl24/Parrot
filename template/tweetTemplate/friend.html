@@ -3,18 +3,29 @@
 	<h2 class='pcolor' style='widh:100%;pading-right:30px'> Connect with People </h2>
 	<br>
 	<p>
-<div class='row' style=''>
+<div class='row m-1 justify-content-center' style=''>
 {%for profile in people%}
-<div class='col p-2 border rounded m-2' style='widt:100%'>
-	<a href="{{profile.profile.get_absolute_url}}" >
-		<img class='img-fluid rounded-circle' style='height:40px;width:40px' loading='lazy' src='{{profile.profile.profile_photo.url}}'  >
+<div class='col-sm-12 col-md-5 p-2 border rounded my-2 mx-md-1' style=''>
+	<div class="row">
+		<div class="col-12">
+			<a href="{{profile.profile.get_absolute_url}}" >
+			<img class='img-fluid rounded-circle' style='height:40px;width:40px;object-fit:cover' loading='lazy' src='{{profile.profile.profile_photo.url}}'  >
+			</a>
+		</div>
+	</div>
+	<div class="row">
+	<div class='col sz-14'>{{profile.username}}</div>
+	</div>
+	<br />
 	
-	<div class='sz-14'>{{profile.username}}</div>
-	</a>
-	
+	<div class='row' id='{{profile.id}}cc'>
+
+<div class="col">
+
 	{%include 'tweetTemplate/follow.html' %}
-    
 </div>
+</div>
+    </div>
 
 {%endfor%}
 </div>

@@ -3,15 +3,24 @@
 
 {%for msg in chat%}
 {% if msg.sender == User %}
-<div  class='box' style='position:absolute;right:20px;float:right'>
-<span  style='display: inline-block;margin: 0px;word-wrap: break-word ;whit-space: normal;' class='box pbcolor white curve'>{{msg.body}}</span>
+<div class="row m-2">
+<div  class='col-6 ' style='text-align:left'>
+<span  style='display: inline-block;' class='rounded color-bg-p color-white p-2'>{{msg.body}}</span>
+</div>
+<div class="col">
 </div> 
-<br>
-{%else%}
-<p class='box' style=''><span class='box sbcolr blak curve white' style='display: inline-block;background-color: #34282C;borer: 1px solid black;word-wrap: break-word;wite-space: normal;'>{{msg.body}}</span></p>
+</div>
 
+{%else%}
+<div class="row m-2">
+<div  class='col-6 ' style='text-align: right;'>
+<span  style='' class='color-bg-white border rounded p-2'>{{msg.body}}</span>
+</div>
+<div class="col order-first">
+</div> 
+</div>
 
 {%endif%}
-<br>
+
 {%endfor%}
 </div>

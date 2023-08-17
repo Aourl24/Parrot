@@ -1,20 +1,8 @@
-<div class='row' id='{{profile.id}}cc'>
+<button class='btn w-100 color-bg-p color-white p-1' style='bacground-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' x-target='#{{profile.id}}cc' hx-trigger="click">
 {%if User in profile.follower.all%}
-<button class='btn w-100' disabled style='background-color:#C0C0C0;color:white;'>
-Follow
-</button>
-
-<button class='btn w-100' style='background-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
 UnFollow
-</button>
-
 {%else%}
-<button class='btn w-100' style='background-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' hx-target='#{{profile.id}}cc'>
 Follow
-</button>
 
-<button class='btn w-100' disabled style='background-color:#C0C0C0;color:white;'>
-UnFollow
-</button>
 {%endif%}
-</div>
+</button>
