@@ -39,7 +39,7 @@ border:none;
 
 
 <div class='row align-items-center' style=''>
-<div class="col-1 p-2">
+<div class="col-2 col-md-1 p-2">
 
 <a href="{{tweet.profile.get_absolute_url}}" >
 <img class='container rounded-circle m-0 p-0' style='width:40px;height:40px;object-fit:cover' loading='lazy' src={{tweet.profile.profile_photo.url}}  />
@@ -59,7 +59,7 @@ border:none;
 
 
 
-<p class='body' style='line-height:30px;font-size:20px'>{{tweet.body}}</p>
+<div class='body sz=16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</div>
 
 
 <p>
@@ -78,14 +78,11 @@ border:none;
 </div>
 
 {%endif%}
-<div class='user mesiz'><b>{{tweet.profile|title}}</b> <div style='margin-top:-4px' ><span class='desize passive'>/{{tweet.profile.user.username|lower}}</span>
-<span class='passive desize' style='flat:right'> • {{tweet.date|timesince}}</span>
-</div>
 
-</div>
 
 {%endfor%}
 </div>
+
 
 {%elif tweet.file.all%}
 {%for file in tweet.file.all|slice:'1' %}
@@ -105,8 +102,13 @@ border:none;
 
 <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
 
+<div class='user mesiz color-t sz-12'><div style='' >
+<span class='passive desize' style='lat:right'> • {{tweet.date|timesince}}</span> . <i class="fas fa-eye"></i> 224.1k Views
+</div>
 
-<div class="row sz-12 align-items-center border-top border-bottom p-2">
+</div>
+
+<div class="row sz-12 align-items-center border-top border-bottom p-1">
             <div class="col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
                     <button class="btn no-border color-t color-bg-white sz-12">
@@ -122,12 +124,11 @@ border:none;
             <div class="col">
                 {%include 'tweetTemplate/retweet.html'%}
             </div>
-            <div class="col">
+            <div class="col hide">
               <button class="no-border btn color-t color-bg-white sz-12">
-                <i class="fas fa-eye"></i> 250.1k
               </button>
             </div>
-            <div class="col">
+            <div class="col hide">
                 <button class="no-border btn color-t color-bg-white sz-12">
                     <i class="fas fa-share" style=""> 
                     </i>

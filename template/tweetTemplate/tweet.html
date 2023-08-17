@@ -11,9 +11,9 @@
 	<br class="display-sm-none"/>
 
 <div class='row sticky-top' style=''>
-<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100 border' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Latest Tweets </button> </a>
-<a class='normal col' href="{%url 'HomeTweetUrl' 'latest'%}">
-<button class='btn w-100' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> Home </button> </a>
+<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Following </button> </a>
+<a class='normal col order-first' href="{%url 'HomeTweetUrl' 'foryou' %}">
+<button class='btn w-100' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> For you </button> </a>
 
 </div>
 

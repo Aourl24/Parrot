@@ -26,7 +26,7 @@ def UserProfile(x):
 def landingView(request):
     template = "tweetTemplate/landing.html"
     return render(request,template)
-    
+
 @login_required
 def CreateTweet(request, id=None):
     template='tweetTemplate/createTweet.html' 
@@ -95,51 +95,49 @@ def TweetView(request, lat=None, hom=None):
         prof=Profile.objects.get(user__username=request.user) # get the request.user with the profile instance
         foll=prof.follow.all() #get the number of followers of request.user
         profile=Profile.objects.all() #get all profiles
-        tweets=Tweet.objects.all().filter(active=True).filter(profile__in=foll) #get the tweets which are active and which the request user follows
-        retweets=Tweet.objects.all().filter(retweet__in=foll) #get the tweets that was retweet by those the user follow 
-        tweetss=tweets.union(retweets)#combine the tweets and retweets together
+        
         
     except (ObjectDoesNotExist, AttributeError):
         # if the user is not login it will just show random tweets to the user
         prof=''
         tweetss=Tweet.objects.all().filter(active=True)
 
-    
-
-    if len(tweetss) == 0: # if the tweet list is none, like when the user just sign up
-        blank=True
-    else:
-        blank=False
 
     home_color='#1DA1F2'
     latest_color ='white'
     
-    if 'latest' in request.session.keys() or lat: #check if the user has asked for latest tweets before or he just asked for it
+    if  lat: #request.session['latest'] == True or lat: #check if the user has asked for latest tweets before or he just asked for it
         latest=True
         home_color='white'
         latest_color ='#1DA1F2'
-        
-    else:
-        latest=False
+        tweets=Tweet.objects.all().filter(active=True).filter(profile__in=foll)#.order_by('?') #get the tweets which are active and which the request user follows
+        retweets=Tweet.objects.all().filter(retweet__in=foll) #get the tweets that was retweet by those the user follow 
+        tweetss=tweets.union(retweets)#combine the tweets and retweets together
+        request.session['latest'] =True
     
+    elif hom:#request.session['latest'] == False or hom:
+        latest=False
+        tweetss = Tweet.objects.filter(active=True)
+        request.session['latest'] = False
+
+    else:
+        tweetss=Tweet.objects.filter(active=True)
+
+
+    if len(list(tweetss)) == 0: # if the tweet list is none, like when the user just sign up
+        blank=True
+    else:
+        blank=False
+
     if hom: #if the user request for the home page we set latest back to false
         latest=False
 
-        try:
-            request.session.pop('latest')
-        except KeyError:
-            pass
-
+        
         home_color='#1DA1F2'
         latest_color ='white'
         
-    if latest: #if latest tweet is required
-        tweetss=tweetss.order_by('-date')
-        request.session['latest'] ='aske' #store it temporary in the session
-        
-    else:
-        tweetss=list(tweetss)
-        shuffle(tweetss)# shuffle the tweets so it can display randomly
+    
+        #shuffle(tweetss)# shuffle the tweets so it can display randomly
     
     page=Paginator(tweetss,5) # i page the tweets this save the page from overhead loading, so it send the tweets page by page
 

@@ -1,7 +1,7 @@
-<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed" style="overlow:auto">
+<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed display-sm-none" style="overlow:auto;z-index:15000">
     {%if user.is_authenticated%}
 
-    <img class='container p-0 rounded-circle' style='width:35px;height:35px;magin-t' src={{request.user.profile.profile_photo.url}}  /> 
+    <img class='container p-0 rounded-circle' style='width:35px;height:35px;object-fit:cover' src={{request.user.profile.profile_photo.url}}  /> 
         {{request.user}}
         <div class=''> <a class="col sz-12 color-black" href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class='sz-12 color-t' style=''>{{request.user.profile.follower.count}}</span> Followers </a><a href="{%url 'FollowListUrl' request.user.profile.id%}" class="col color-black sz-12"><span class='sz-12 color-t' style=''>{{request.user.profile.follow.count}}</span> Following  </a> </div>
     
