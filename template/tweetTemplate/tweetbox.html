@@ -1,13 +1,13 @@
 {%load custom_tags%}
 <div class="row sz-14 m-1" id="tweetbox" style="">
   {%for tweet in tweets %}
+
     <div class="col-md-12 my-1 p-2 border rounded col-sm" id="twetbox" style="">
       
-      {%comment%}
-        {%if tweet.comment%}
-          <div class="row m-2 sz-12 passive" style="">
+              {%if tweet.comment%}
+          <div class="row my-2 sz-12 passive" style="">
             <div class="col">
-                <i class="far fa-comment sz-16">
+                <i class="far fa-comment sz-14">
                 </i>
                 Reply to {{tweet.comment.profile|title}}'s
                 <a class="" href="{{tweet.comment.get_absolute_url}}" style="">
@@ -26,7 +26,7 @@
             </span>
           </div>
         {%endif%}
-      {%endcomment%}
+     
 
       <div class="row">
         <div class="col-2 col-md-1">
@@ -66,9 +66,12 @@
               </a>
           </div>
           {%if tweet.image.all%}
-            <div class="row">
+          
+            <div class="my-2 px-2 d-flex" style="hight:250px;overflow:auto">
               {%for img in tweet.image.all%}
-
+                <div class="col-10 m-1">
+                  <img class="img-fluid p-0 w-100 rounded" src="{{img.image.url}}" style="height:250px;object-fit:cover;"/>
+                </div>                 
               {%endfor%}
             </div>
           {%endif%}
@@ -98,12 +101,12 @@
             <div class="col">
                 {%include 'tweetTemplate/like.html'%}
             </div>
-            <div class="col">
+            <div class="col sz-12">
                 {%include 'tweetTemplate/retweet.html'%}
             </div>
             <div class="col">
               <button class="no-border btn color-t color-bg-white sz-12 p-0">
-                <i class="fas fa-eye"></i> 2.1k
+                <i class="fas fa-eye"></i> {{tweet.views}}
               </button>
             </div>
             <div class="col hide">
@@ -118,6 +121,7 @@
       </div>
     </div>
   {%endfor%}
+  </div>
 
         {%if tweets.has_next%}
         <div class="cener" hx-get="?page={{tweets.next_page_number}}" hx-swap="innerHTML" hx-trigger="revealed" style="posiion:absolute;magin-left:50%">
@@ -135,4 +139,4 @@ function Show(x){
   document.getElementById(`optionholder${x}`).style.display='block'
 }
         </script>
-</div>
+

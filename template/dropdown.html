@@ -1,5 +1,5 @@
 <div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed display-sm-none" style="overlow:auto;z-index:15000">
-    {%if user.is_authenticated%}
+    {%if ser.is_authenticated%}
 
     <img class='container p-0 rounded-circle' style='width:35px;height:35px;object-fit:cover' src={{request.user.profile.profile_photo.url}}  /> 
         {{request.user}}

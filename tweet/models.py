@@ -33,7 +33,7 @@ class Tweet(models.Model):
     views=models.ManyToManyField(Profile,related_name='viewed', blank=True)
     active=models.BooleanField(default=True)
     retweet=models.ManyToManyField(Profile,related_name='retweet', blank=True)
-
+    views = models.IntegerField(default=0)
 
 
     def get_absolute_url(self):

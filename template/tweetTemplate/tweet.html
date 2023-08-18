@@ -7,10 +7,9 @@
 
 </style>
 <div id='body' class='' style=''>
-	<h6 class="bold display-sm-none">Home </h6>
-	<br class="display-sm-none"/>
+	
 
-<div class='row sticky-top' style=''>
+<div class='row sticky-top color-bg-white p-2' style='z-index:10003'>
 <a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Following </button> </a>
 <a class='normal col order-first' href="{%url 'HomeTweetUrl' 'foryou' %}">
 <button class='btn w-100' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> For you </button> </a>

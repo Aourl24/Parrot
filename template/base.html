@@ -54,12 +54,12 @@ a{
     <link css="" dark.css'%}'="" href="{%static " rel="stylesheet"/>
     {%endif%}
     <body class="display-d-none font-lato">
-        {%block header%}
-        <header class="row center p-2 align-items-center display-md-none fixed-top" style="background-color: rgba(250, 250, 250, 0.8);">
+        
+        <header class="row center p-2 align-items-center dispay-md-none fixed-top color-bg-white borer-bottom mb-md-3" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
 
-               <div class="col-2" style="">
+               <div class="col-md-2 col-3" style="">
                 {%if request.user.is_authenticated%}
-                <img class="container p-0 rounded-circle" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px">
+                <img class="container p-0 rounded-circle" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px"><span class="display-sm-none"> {{request.user.username|title}} </span>
                     {%else%}
                     <i class="fas fa-bars color-p" onclick="show()">
                     </i>
@@ -70,12 +70,15 @@ a{
                 </img>
             </a>
         </div>
-            <div class="col">
+            <div class="col-md-2 col bold">
+                {%block header%}
                 <i class="fab fa-twitter sz-24">
                 </i>
+                {%endblock%}
             </div>
         </header>
-        {%endblock%}
+        
+        <br class="display-sm-none" />
         <br />
         {%block navbar%}
         <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white" style="">

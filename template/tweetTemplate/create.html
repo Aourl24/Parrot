@@ -6,26 +6,41 @@
 <div class='box-border ct' style='height:90%;border:none'>
 {%for field in form%}
 <p class='center'>{{field.as_widget}}</p>
+
 {%endfor%}
 
+{%comment%}
 {%for img in image%}
 
 <p>{{img.as_widget}}</p>
 
 {%endfor%}
+{%endcomment%}
+<br />
+<h5 class="bold">Add Image </h5>
+<input id="upload" class="form-control" type="file" accept="image/*" multiple="true" name="image" onclick="Image()" />
 
+<div id='imageName' class='cage center d-flex my-2' style="overflow: auto;"></div>
+
+{%comment%}
 {%for fle in file%}
 
 <p>{{fle.as_widget}}</p>
 
 {%endfor%}
+{%endcomment%}
+
+<br />
+<h5 class="bold">Add Video </h5>
+<input class="form-control" type="file" accept="video/*" multiple="true" name="video" />
 <hr>
+{%comment%}
 <p class='pcolor center' style='word-spacing:25px;font-size:22px'>
 <i class='fas fa-location-arrow btn btn-link'></i> 
 <button class='btn btn-link' type='button' onclick="Image()"> <i class='fas fa-image'></i></button> 
 <button class='btn btn-link' type='button' onclick='Video()'><i class='fas fa-video'></i></button>
+{%endcomment%}
 
-<div id='imageName' class='cage center' ></div>
 <ul class='sz-12'>
 <li> You can upload maximum of 4 images </li>
 <li> You can only upload a single video at once </li>
@@ -45,8 +60,10 @@
 </div>
 <script>
 function Image(){
-document.getElementById('upload').click();	
-$('#upload').change(function(){name=this.files[0];console.log(name);$('#imageName').append(`${this.files.length}  image <img src=${name.url} > `)})
+//document.getElementById('upload').click();	
+$('#upload').change(function(){
+	var reader = new FileReader()
+	for(var i=0;i< this.files.length;i++){name=this.files[i];$('#imageName').append(`<img class="container p-0 rounded m-1" style="height:250px;object-fit:cover" src=${URL.createObjectURL(this.files[i])} > `)}})
 }
 
 function Video(){

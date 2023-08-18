@@ -13,7 +13,7 @@ from .cell import Cell
 from django.db.models import Subquery
 from django.core.paginator import Paginator
 from random import shuffle
-
+import random
 
 # CreateTweet functions helps to create tweet, image, file also linking them together. 
 #It also helps check whether a user is replying or posting a tweets
@@ -135,10 +135,11 @@ def TweetView(request, lat=None, hom=None):
         
         home_color='#1DA1F2'
         latest_color ='white'
-        
+    
+
     
         #shuffle(tweetss)# shuffle the tweets so it can display randomly
-    
+    tweetss = sorted(tweetss,key=lambda x: random.random())
     page=Paginator(tweetss,5) # i page the tweets this save the page from overhead loading, so it send the tweets page by page
 
     
@@ -278,14 +279,17 @@ def TweetDetailView(request, id):
     tweet_form=TweetForm()
     image_form=ImageForm()
     file_form=FileForm()
+    tweet.views += 1
+    tweet.save()
 
     try:
         prof=Profile.objects.get(user__username=request.user)
+        User = prof
     except:
         prof=''
     
     template='tweetTemplate/tweetDetail.html'
-    context=dict(tweet=tweet, prof=prof,form=tweet_form,image=image_form,file=file_form)
+    context=dict(tweet=tweet, prof=prof,form=tweet_form,image=image_form,file=file_form,User=prof)
     
     return render(request, template, context)
 

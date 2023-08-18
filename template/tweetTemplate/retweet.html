@@ -1,4 +1,4 @@
-<button class='btn no-border sz-12 p-0 color-t' hx-get="{%url 'TweetUrl'%}" hx-include='#tt{{tweet.id}}' hx-swap='outerHTML' style='' onClick=''>
+<button class='no-border p-0 color-t color-bg-white' hx-get="{%url 'TweetUrl'%}" hx-include='#tt{{tweet.id}}' hx-swap='outerHTML' style='' onClick=''>
 {%if prof in tweet.retweet.all%}
 <i id='{{tweet.id}}' style='color:#757E2B' class='fas fa-retweet' data-fa-transform="shrink-8 fa-border"></i> {{tweet.retweet.count}}
 {%else%}

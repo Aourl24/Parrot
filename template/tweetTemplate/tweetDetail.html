@@ -1,6 +1,8 @@
 {%extends 'base.html'%}
 {%load custom_tags%}
-
+{%block header%}
+Post
+{%endblock%}
 
 {%block content%}
 <style>
@@ -47,11 +49,13 @@ border:none;
 
 </div>
 <div class="col">
-	{{tweet.profile}} 
+	{{tweet.profile}} <br/>
 	<span class="sz-12 color-t">/{{tweet.profile.user.username|lower}}</span>
 </div>
 
-
+<div class="col">
+	{%include 'tweetTemplate/follow.html' with profile=tweet.profile User=prof %}
+</div>
 
 </div>
 
@@ -59,30 +63,21 @@ border:none;
 
 
 
-<div class='body sz=16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</div>
+<p class='body sz=16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</p>
 
 
 <p>
 {%if tweet.image.all%}
-<div class='box-border flex-wrap' id='leave' style=';border:none;box-shadow:none;padding:0px;width:100%;height:auto;'>
-{%for img in tweet.image.all|slice:'4' %}
-{%if img.image  %}
-
-<div class='' style='flex-grow:2;flex-basis:3cm;height:auto;width:4cm;max-heght:6cm'>
-<a href='{{img.get_absolute_url}}' class='normal' style=''>
-<div class='allimage b' style='wdth:3cm;heght:3cm;padding:0px;margin:2px;border:none;flex-bais:4cm; flex-gow:2'>
-<img src={{img.image.url}}  loading='lazy' id={{img.id}} class='box-border' style=';width:100%;height:4cm;padding:0px;border:none;box-shadow:none;border-radius:3px'/>
-</div>
-
-</a>
-</div>
-
-{%endif%}
-
-
-{%endfor%}
-</div>
-
+{%if tweet.image.all%}
+          
+            <div class="my-2 px-2 d-flex" style="hight:250px;overflow:auto">
+              {%for img in tweet.image.all%}
+                <div class="col-10 m-1">
+                  <img class="img-fluid p-0 w-100 rounded" src="{{img.image.url}}" style="height:250px;object-fit:cover;"/>
+                </div>                 
+              {%endfor%}
+            </div>
+          {%endif%}
 
 {%elif tweet.file.all%}
 {%for file in tweet.file.all|slice:'1' %}
@@ -103,15 +98,15 @@ border:none;
 <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
 
 <div class='user mesiz color-t sz-12'><div style='' >
-<span class='passive desize' style='lat:right'> • {{tweet.date|timesince}}</span> . <i class="fas fa-eye"></i> 224.1k Views
+<span class='passive desize' style='lat:right'> • {{tweet.date|timesince}}</span> . <i class="fas fa-eye"></i> {{tweet.views}}
 </div>
 
 </div>
-
-<div class="row sz-12 align-items-center border-top border-bottom p-1">
+<br />
+<div class="row sz-16 align-items-center border-top border-bottom p-1">
             <div class="col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
-                    <button class="btn no-border color-t color-bg-white sz-12">
+                    <button class="btn no-border color-t color-bg-white">
                         <i class="far fa-comment">
                         </i>
                         {{tweet.tweet.count}}
@@ -142,18 +137,19 @@ border:none;
 
 
 
-{%include 'tweetTemplate/tweetbox.html' with tweets=tweet.tweet.all %}
-<br>
 <br>
 
-<div class='bottomline fixed-bottom bcolor' style='padding:5px'><a class='norml' href='#hell'><input name='body' id='holder' class='input' onclick="$('#hell').addClass('show');$('#holder').addClass('hide')" style='border: none;border-bottom: 2px solid var(--primary-color);width:100%;bottom:10px;height:1cm;box-shadow:none;' placeholder='Reply'></a>
+<div class='' style='padding:5px'><a class='norml' href='#hell'><input name='body' id='holder' class='form-control' onclick="$('#hell').addClass('show');$('#holder').addClass('hide')" stye='border: none;border-bottom: 2px solid var(--primary-color);width:100%;bottom:10px;height:1cm;box-shadow:none;' placeholder='Post your Reply'></a>
 </div>
-
-
 
 <div id='hell' class='hide'>
 {%include 'tweetTemplate/create.html'%}
 </div>
+
+{%include 'tweetTemplate/tweetbox.html' with tweets=tweet.tweet.all %}
+
+
+
 
 
 

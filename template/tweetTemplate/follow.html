@@ -1,4 +1,4 @@
-<button class='btn w-100 color-bg-p color-white p-1' style='bacground-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' x-target='#{{profile.id}}cc' hx-trigger="click">
+<button class='btn w-100 {%if User in profile.follower.all%} color-bg-t {%else%}color-bg-p{%endif%} color-white p-1' style='bacground-color:red;color:white;' hx-get="{%url 'FollowUrl' profile.id %}" hx-swap='outerHTML' x-target='#{{profile.id}}cc' hx-trigger="click">
 {%if User in profile.follower.all%}
 UnFollow
 {%else%}
