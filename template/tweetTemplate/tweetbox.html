@@ -1,5 +1,5 @@
 {%load custom_tags%}
-<div class="row sz-14 m-1" id="tweetbox" style="">
+<div class="row sz-14 m-1" id="tweetbox" style="z-index: 500;">
   {%for tweet in tweets %}
 
     <div class="col-md-12 my-1 p-2 border rounded col-sm" id="twetbox" style="">
@@ -69,21 +69,22 @@
           
             <div class="my-2 px-2 d-flex" style="hight:250px;overflow:auto">
               {%for img in tweet.image.all%}
-                <div class="col-10 m-1">
-                  <img class="img-fluid p-0 w-100 rounded" src="{{img.image.url}}" style="height:250px;object-fit:cover;"/>
+                <div class="col-11 m-1">
+                  <img class="img-fluid p-0 w-100 rounded"  loading="lazy" src="{{img.image.url}}" style="height:250px;object-fit:cover;object-position:top;"/>
                 </div>                 
               {%endfor%}
             </div>
           {%endif%}
 
           {%if tweet.file.all%}
-            {%for file in tweet.file.all|slice:'1' %}
-              <div class="center" onclick="$('#vid')[0].play()">
-                <video class="box border curve" id="vid" style="height:6cm;width:100%">
+          <div class="d-flex" style="overflow:scroll;">
+            {%for file in tweet.file.all %}
+                <video class="container p-0 rounded m-1" style="height:250px;object-fit:cover id="vid" autoplay muted>
                   <source src="{{file.file.url}}" />
-                  </video>
-              </div>
+                </video>
             {%endfor%}
+                    </div>
+
           {%endif%}
 
           <input id="on{{tweet.id}}" name="like" type="hidden" value="{{tweet.id}}"/>

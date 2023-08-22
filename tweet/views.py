@@ -13,15 +13,24 @@ from .cell import Cell
 from django.db.models import Subquery
 from django.core.paginator import Paginator
 from random import shuffle
+#from twitter.settings import 
 import random
-
+import tweepy
 # CreateTweet functions helps to create tweet, image, file also linking them together. 
 #It also helps check whether a user is replying or posting a tweets
 #It requires a user to login to load this view
+TWITTER_API_KEY = 'm009rStXsr6mosT1YCNObW7jf'
+TWITTER_API_KEY_SECRET = 'HXoN0l3XsxnukiYmInskNui2evEewupN88QwYH2RKKR45rxvUr'
+TWITTER_CONSUMER_KEY = ''
+TWITTER_CONSUMER_SECRET = ''
+TWITTER_ACCESS_TOKEN = '1563500340837634048-tWKnxIhdvLPcd3MTrsCu3hSWgX8qrV'
+TWITTER_ACCESS_TOKEN_SECRET = 'J0KItRWYe2X0gKW1Q6gHbBT0mQIgXcUoeoANcucKdmAho'
 
 def UserProfile(x):
     return Profile.objects.get(user__username=x) # get the users with the profile instance
  
+auth = tweepy.OAuthHandler(TWITTER_API_KEY,TWITTER_API_KEY_SECRET,TWITTER_ACCESS_TOKEN,TWITTER_ACCESS_TOKEN_SECRET)
+api = tweepy.API(auth)
 
 def landingView(request):
     template = "tweetTemplate/landing.html"
@@ -61,14 +70,11 @@ def CreateTweet(request, id=None):
                 #print('list', imag)
                
             if file_form.is_valid(): #check if the file form is valid
-                g=file_form['file'].value()
-                if g != None:
-                    k=g.name
-                    if k.endswith('.mp4'): # this is not save tho, but i used it to verify the type of file uploaded
-                        d=file_form.save(commit=False) # save it temporary 
-                        d.tweet=a #link the file  form to the tweet
-                        d.save() # save the file form
-            
+                g=request.FILES.getlist('video')
+                if g:
+                    for i in g:
+                        File.objects.create(tweet=a,file=i)
+                    
 
             if reply:
                 # the reason for this is that when a user is replying he is definitely on the tweet detail page , so it is best we return the tweet detail page
@@ -142,7 +148,8 @@ def TweetView(request, lat=None, hom=None):
     tweetss = sorted(tweetss,key=lambda x: random.random())
     page=Paginator(tweetss,5) # i page the tweets this save the page from overhead loading, so it send the tweets page by page
 
-    
+    #tweetss = api.user_timeline(count=10)
+    print(tweetss)
     page_no=request.GET.get('page') # get the page number from the request
     tweets=page.get_page(page_no) # get the tweets from that page
     
@@ -319,10 +326,12 @@ def TrendingView(request):
     for tweet in tweets:
         Most=Most + tweet.most_word()
     
-    print(Most)
+    #print(Most)
     Top=sorted(Most,key=lambda i: Most.count(i), reverse=True)
     Top.sort()
     Top=set(Top)
+    #Top = api.get_place_trends(id=1)
+    print(Top)
     if 'HX-Request' in request.headers:
         template = 'tweetTemplate/trendbox.html'
 

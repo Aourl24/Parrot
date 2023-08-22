@@ -1,4 +1,4 @@
-<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed display-sm-none" style="overlow:auto;z-index:15000">
+<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-md-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed display-sm-none" style="overlow:auto;z-index:15000">
     {%if ser.is_authenticated%}
 
     <img class='container p-0 rounded-circle' style='width:35px;height:35px;object-fit:cover' src={{request.user.profile.profile_photo.url}}  /> 
@@ -6,16 +6,16 @@
         <div class=''> <a class="col sz-12 color-black" href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class='sz-12 color-t' style=''>{{request.user.profile.follower.count}}</span> Followers </a><a href="{%url 'FollowListUrl' request.user.profile.id%}" class="col color-black sz-12"><span class='sz-12 color-t' style=''>{{request.user.profile.follow.count}}</span> Following  </a> </div>
     
         {%endif%}
-        <div class="row m-2 py-2">
+        <div class="row py-2 display-sm-none m-2">
                 <a class="navbar-brand" href="{%url 'TweetUrl'%}">
-                <i class="fas fa-home">
-                </i>
+                    <i class="fas fa-home"></i>
                 <span class="">
                     Home
                 </span>
+            
             </a>
         </div>
-        <div class="row m-2 py-2">
+        <div class="row m-2 py-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'TrendUrl'%}">
                 <i class="fas fa-search">
                 </i>
@@ -24,7 +24,7 @@
                 </span>
             </a>
         </div>
-        <div class="row m-2 py-2">
+        <div class="row m-2 py-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
                 <i class="fas fa-bell">
                 </i>
@@ -36,7 +36,7 @@
                 </span>
             </a>
         </div>
-        <div class="row m-2 py-2">
+        <div class="row m-2 py-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'chat' %}">
                 <i class="fas fa-envelope">
                 </i>
@@ -84,7 +84,7 @@
             
                 <div class='row m-2 py-2'>
                 <form method='GET' action="{%url 'ModeUrl' %}">
-                    <button class='btn btn-link color-black p-0'  name='dark' value='{{request.path_info}}'>
+                    <button class='btn color-bg-white color-black p-0'  name='dark' value='{{request.path_info}}'>
                         
                         <i class='fas fa-moon pcolor'></i>
                         Mode

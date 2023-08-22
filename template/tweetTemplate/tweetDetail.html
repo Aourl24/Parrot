@@ -26,7 +26,7 @@ border:none;
 
 
 
-<div class='' style=''>
+<div class='border p-2 rounded my-2' style=''>
 {%comment%}
 {%if tweet.comment%}
 <p class='desize bold passive'><i class='fas fa-comment'></i> Reply to {{tweet.comment.profile|title}} <a class='normal' style='color:#1DA1F2' href='{{tweet.comment.get_absolute_url}}'>Tweet</a></p>
@@ -70,23 +70,26 @@ border:none;
 {%if tweet.image.all%}
 {%if tweet.image.all%}
           
-            <div class="my-2 px-2 d-flex" style="hight:250px;overflow:auto">
+            <div class="my-2 px-2 d-flex justify-content-evenly center" style="hight:250px;overflow:auto">
               {%for img in tweet.image.all%}
-                <div class="col-10 m-1">
-                  <img class="img-fluid p-0 w-100 rounded" src="{{img.image.url}}" style="height:250px;object-fit:cover;"/>
+                <div class="col-10 col-md m-1">
+                  <img class="img-fluid p-0 -00 rounded border" src="{{img.image.url}}" style="height:300px;object-fit:contain;object-position: top;"/>
                 </div>                 
               {%endfor%}
             </div>
           {%endif%}
 
 {%elif tweet.file.all%}
-{%for file in tweet.file.all|slice:'1' %}
-<div class='center' onclick="$('#{{tweet.id}}')[0].play()">
-<video id='{{tweet.id}}' class='box border curve' style='height:6cm;width:100%'>
-<source src='{{file.file.url}}' >
-</video>
-</div>
-{%endfor%}
+
+          <div class="d-flex" style="overflow:scroll;">
+            {%for file in tweet.file.all %}
+                <video class="container p-0 rounded m-1 " style="height:250px;object-fit:cover id="vid" autoplay muted controls>
+                  <source src="{{file.file.url}}" />
+                </video>
+            {%endfor%}
+                    </div>
+           
+
 
 {%endif%}
 </p>
@@ -97,13 +100,11 @@ border:none;
 
 <input id='on{{tweet.id}}' type='hidden' value={{tweet.id}} name='like' type='hiddn' >
 
-<div class='user mesiz color-t sz-12'><div style='' >
-<span class='passive desize' style='lat:right'> • {{tweet.date|timesince}}</span> . <i class="fas fa-eye"></i> {{tweet.views}}
-</div>
+<div class='user mesiz color-t sz-12'>
 
 </div>
-<br />
-<div class="row sz-16 align-items-center border-top border-bottom p-1">
+
+<div class="row sz-16 align-items-center color-t p-1">
             <div class="col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
                     <button class="btn no-border color-t color-bg-white">
@@ -128,6 +129,9 @@ border:none;
                     <i class="fas fa-share" style=""> 
                     </i>
                 </button>
+            </div>
+            <div class="col" style='' >
+                 <i class="fas fa-eye"></i> {{tweet.views}}
             </div>
 
        </div>

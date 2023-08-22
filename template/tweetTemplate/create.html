@@ -32,7 +32,9 @@
 
 <br />
 <h5 class="bold">Add Video </h5>
-<input class="form-control" type="file" accept="video/*" multiple="true" name="video" />
+<input id="video" onclick="Video()" class="form-control" type="file" accept="video/*" multiple="true" name="video" />
+<div id='videoName' class='cage center d-flex my-2' style="overflow: auto;"></div>
+
 <hr>
 {%comment%}
 <p class='pcolor center' style='word-spacing:25px;font-size:22px'>
@@ -62,13 +64,12 @@
 function Image(){
 //document.getElementById('upload').click();	
 $('#upload').change(function(){
-	var reader = new FileReader()
 	for(var i=0;i< this.files.length;i++){name=this.files[i];$('#imageName').append(`<img class="container p-0 rounded m-1" style="height:250px;object-fit:cover" src=${URL.createObjectURL(this.files[i])} > `)}})
 }
 
 function Video(){
-document.getElementById('video').click();	
-$('#video').change(function(){name=this.files[0].name;console.log(name);$('#imageName').append(`file ${name} `)})
+$('#video').change(function(){
+	for(var i=0;i< this.files.length;i++){name=this.files[i];$('#videoName').append(`<video class="container p-0 rounded m-1" style="height:250px;object-fit:cover" autoplay muted><source src=${URL.createObjectURL(this.files[i])} ></video> `)}})
 }
 
 $(window).on('load',function(){
