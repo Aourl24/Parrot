@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yb4n8-7q6rp_z*)cu&8n6rth=c4p_=7@+lmf(&$tcqn*$crfeo'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,7 +51,8 @@ INSTALLED_APPS = [
     'tweet',
     #'rest_framework', 
     'notifications', 
-    'chat', 
+    'chat',
+    'environ' 
     #'coverage'
 ]
 
@@ -147,9 +154,9 @@ ACCOUNT_EMAIL_REQUIRED=False
 ACCOUNT_EMAIL_VERIFICATION='none'
 ACCOUNT_SIGNUP_REDIRECT_URL='TweetUrl'
 
-TWITTER_API_KEY = 'm009rStXsr6mosT1YCNObW7jf'
-TWITTER_API_KEY_SECRET = 'HXoN0l3XsxnukiYmInskNui2evEewupN88QwYH2RKKR45rxvUr'
+TWITTER_API_KEY = env('TWITTER_API_KEY') 
+TWITTER_API_KEY_SECRET = env('TWITTER_API_KEY_SECRET')
 TWITTER_CONSUMER_KEY = ''
 TWITTER_CONSUMER_SECRET = ''
-TWITTER_ACCESS_TOKEN = '1563500340837634048-tWKnxIhdvLPcd3MTrsCu3hSWgX8qrV'
-TWITTER_ACCESS_TOKEN_SECRET = 'J0KItRWYe2X0gKW1Q6gHbBT0mQIgXcUoeoANcucKdmAho'
+TWITTER_ACCESS_TOKEN = env('TWITTER_ACCESS_TOKEN')
+TWITTER_ACCESS_TOKEN_SECRET = env('TWITTER_ACCESS_TOKEN_SECRET')

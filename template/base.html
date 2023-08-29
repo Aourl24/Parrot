@@ -55,14 +55,16 @@ a{
     {%endif%}
     <body class="display-d-none font-lato">
         
-        <header class="row center p-2 align-items-center dispay-md-none fixed-top color-bg-p borer-bottom mb-md-3 color-white" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
+        <header class="row center p-2 align-items-center dispay-md-none fixe-top color-bg-p borer-bottom mb-md-3 color-white" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
 
                <div class="col col-md-2" style="text-align: left;">
                 {%if request.user.is_authenticated%}
                 <img class="container p-0 rounded-circle border" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px;object-fit: cover;border-color:white;"><span class="dispay-sm-none"> {{request.user.username|title}} </span>
                     {%else%}
-                    <i class="fas fa-bars color-white" onclick="show()">
+                    <span class="display-md-none">
+                    <i class="fas fa-bars color-white display-md-none" onclick="show()">
                     </i>
+                    </span> 
                     {%endif%}
                     <span class="hide pcolor hideI">
                         Profile
@@ -78,8 +80,8 @@ a{
             </div>
         </header>
         
-        <br class="display-sm-none" />
-        <br />
+        <r class="display-sm-none" />
+        <r />
         {%block navbar%}
         <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white" style="">
             <a class="navbar-brand" href="{%url 'TweetUrl'%}">
