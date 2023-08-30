@@ -1,4 +1,6 @@
 {%extends 'base.html'%}
+{% load socialaccount %}
+
 {%block sidebar%}
 {%endblock%}
 {%block header%}
@@ -34,13 +36,13 @@
 
 <div class="row m-2 mb-3">
 	<div class='col col border rounded h-100 center btn'>
-		<a href="" class="sz-18 color-black"><span class="text-danger"><i class="fab fa-google"></i></span> Sign up with Google </a>
+		<a href="{% provider_login_url 'google' %}" class="sz-18 color-black"><span class="text-danger"><i class="fab fa-google"></i></span> Sign up with Google </a>
 	</div>
 </div>
 
 <div class="row m-2">
 	<div class='col col border rounded h-100 center btn'>
-		<a href="" class="sz-18 color-black"><span class="color-p"> <i class="fab fa-twitter"></i> </span>Sign up with Twitter </a>
+		<a href="{% provider_login_url 'twitter' method='oauth2' %}"  class="sz-18 color-black"><span class="color-p"> <i class="fab fa-twitter"></i> </span>Sign up with Twitter </a>
 	</div>
 </div>
 <div class="row">

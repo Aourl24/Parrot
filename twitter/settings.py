@@ -43,20 +43,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites', 
-    'allauth', 
-    'allauth.account', 
-    'allauth.socialaccount', 
-    'user', 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+     'allauth.socialaccount.providers.google',
+     'allauth.socialaccount.providers.twitter',
+    'user',
     'tweet',
-    #'rest_framework', 
-    'notifications', 
+    #'rest_framework',
+    'notifications',
     'chat',
-    'environ' 
+    'environ'
     #'coverage'
 ]
 
-SITE_ID=1
+SITE_ID=2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,8 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-#STATIC_ROOT=str(BASE_DIR.joinpath('static'))
-STATICFILES_DIRS=[str(BASE_DIR.joinpath('static'))]
+STATIC_ROOT=str(BASE_DIR.joinpath('static_root/static'))
+#STATICFILES_DIRS=[str(BASE_DIR.joinpath('static'))]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT=str(BASE_DIR.joinpath('media'))
@@ -146,6 +148,14 @@ MEDIA_ROOT=str(BASE_DIR.joinpath('media'))
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SECURE_HSTS_SECONDS = 31536000 # One year in seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 LOGIN_REDIRECT_URL='TweetUrl'
 LOGOUT_REDIRECT_URL='TweetUrl'
 #AUTH_USER_MODEL = 'core.User'
@@ -154,7 +164,7 @@ ACCOUNT_EMAIL_REQUIRED=False
 ACCOUNT_EMAIL_VERIFICATION='none'
 ACCOUNT_SIGNUP_REDIRECT_URL='TweetUrl'
 
-TWITTER_API_KEY = env('TWITTER_API_KEY') 
+TWITTER_API_KEY = env('TWITTER_API_KEY')
 TWITTER_API_KEY_SECRET = env('TWITTER_API_KEY_SECRET')
 TWITTER_CONSUMER_KEY = ''
 TWITTER_CONSUMER_SECRET = ''
