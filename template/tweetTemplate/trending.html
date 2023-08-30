@@ -4,14 +4,14 @@
 <div class='box' style="padding:2px">
 <form method='get' action="{%url 'SearchUrl' %}" >
 <div class='center'>
-<input type='search' class=' input bo' placeholder='Search' name='search' style='height:1cm;margi:15px;width:100%;border:2px solid #1DA1F2'>
+<input type='search' class='form-control' placeholder='Search' name='search' style='height:1cm;margi:15px;width:100%;border:2px solid #1DA1F2'>
 </div>
 </form>
 
-<div class='bx brder' style='border:none;height:100%;padding-top:2px'>
-<p><div class='bo insize pcolor' style='bacground-color:black;color:black;border:none'>Trending</div> 
-<div class='desize black'> Find out the most talk about words today </div>
-
+<div class='my-2' styl='border:none;height:100%;padding-top:2px'>
+<p><div class='sz-20 color-p bold' stye='bacground-color:black;color:black;border:none'>Trending</div> 
+<div class='sz-12 black'> Find out the most talk about words today </div>
+<br />
 {%include 'tweetTemplate/trendbox.html'%}
 
 

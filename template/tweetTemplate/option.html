@@ -1,8 +1,8 @@
 
-<div id='{{saveId}}' class='box border box' style='border-color:white;width:50%;font-size:20px;backround-color:#d7d7d7;color:black;z-index:100;position:absolute'>
+<div id='{{saveId}}' class='color-bg-white border rounded p-2' style='z-index: 10000000000;'>
 
 {% if tweet.profile == prof %}
-<div class='black'> <a href="{%url 'DeleteUrl' saveId %}">Delete Tweet </a></div>
+<div class=''> <a href="{%url 'DeleteUrl' saveId %}">Delete Tweet </a></div>
 {%endif%}
 
 <form method='POST' hx-include='#on{{tweet.id}}' hx-trigger='click' hx-post="{%url 'SaveUrl' %}" hx-swap='outerHTML'>
@@ -10,10 +10,10 @@
 {%csrf_token%}
 
 <input name='save' id='save' value="{{saveId}}" type='hidden' >
-<div hx-trigger='click'> Save Tweet </div>
+<div class="" hx-trigger='click'> Save Tweet </div>
 </form>
 <hr>
-<button class='normal' style='color:red' onclick='Close()' >Close</button>
+<button class='btn btn-danger color-white sz-12' style='' onclick='Close()' >Close</button>
 </div>
 
 

@@ -49,16 +49,18 @@
                   {{tweet.date|timesince}}
               </span>
             </div>
-            {%comment%}
-            <div class="col-1 sz-12" hx-get="{%url 'OptionUrl' %}" hx-include="#on{{tweet.id}}" hx-swap="innerHTML" hx-target="#optionholder{{tweet.id}}" style="tet-align:right;float:right">
+            
+            <div id="optionholder{{tweet.id}}" class="position-absolute p-1 hide">
+              </div>
+
+            <div class="col-2 col-md-1 sz-12 hide" hx-get="{%url 'OptionUrl' %}" hx-include="#on{{tweet.id}}" hx-swap="innerHTML" hx-target="#optionholder{{tweet.id}}" style="tet-align:right;float:right">
               <span class="">
-                  <i class="fas fa-ellipsis-h">
+                  <i class="fas fa-ellipsis-h passive color-t">
                   </i>
               </span>
-              <span id="optionholder{{tweet.id}}">
-              </span>
+              
             </div>
-            {%endcomment%}
+            
           </div>
           <div class="sz-14" style="">
               <a class="color-black" href="{{tweet.get_absolute_url}}">

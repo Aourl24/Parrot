@@ -37,7 +37,7 @@ input{
                 </div>
             </div>
 
-            <form method='post' class="form-control">
+            <form method='post' class="">
                 {%csrf_token%}
 
                             {%if form.errors %}
@@ -86,7 +86,7 @@ input{
 
             <div class="row">
                 <div class="col">
-                    <a href="{ provider_login_url 'google' %}" class='btn border p-2 sz-18 rounded btn-block color-black w-100'>
+                    <a href="{% provider_login_url 'google' %}" class='btn border p-2 sz-18 rounded btn-block color-black w-100'>
                         <i class='fab fa-google text-danger'></i> Sign Up with Google
                     </a>
                 <div>

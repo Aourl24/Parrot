@@ -14,15 +14,15 @@
 {%block bottom%}
 {%endblock%}
 {%block content%}
-<br />
+
 <div class="row">
 	<div class="col sz-36">
-		<i class="fab fa-twitter" ></i>
+		<i class="fab fa-twitter color-p" ></i>
 	</div>
 </div>
 <br />
 <div class="row">
-	<div class="col sz-48 bold">
+	<div class="col sz-36 bold color-p">
 		Happening <br/> Now
 	</div>
 </div>
@@ -40,7 +40,7 @@
 	</div>
 </div>
 
-<div class="row m-2">
+<div class="row m-2 hide">
 	<div class='col col border rounded h-100 center btn'>
 		<a href="{% provider_login_url 'twitter' method='oauth2' %}"  class="sz-18 color-black"><span class="color-p"> <i class="fab fa-twitter"></i> </span>Sign up with Twitter </a>
 	</div>
