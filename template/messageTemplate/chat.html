@@ -2,13 +2,13 @@
 
 {%block content%}
 <div class='sz-20 bold'> Chats</div>
-<div class='color-t'> You can only message those who follows you and you follow them  </div>
+<div class='sz-12 color-t'> You can only message those who follows you and you follow them  </div>
 <br>
 {%for cht in chat%}
 
 <a class='normal' href={{cht.get_absolute_url}} >
-<p class='mesize pcolor'>{{cht.user.username|title}}</p>
-<p class='desize passive'>{{cht.active}}</p>
+<p class='sz-20 color-black'>{{cht.user.username|title}}</p>
+<div class='sz-12 color-t'>{%if cht.active%}online{%else%}offline{%endif%}</div>
 </a>
 
 

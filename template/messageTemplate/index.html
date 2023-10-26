@@ -7,7 +7,7 @@
 	}
 
 </style>
-<div classs='insize box '>{{cha.user.username|title}}</div>
+<div classs='sz-20'>{{cha.user.username|title}}</div>
 <br>
 
 
@@ -17,7 +17,7 @@
 <hr>
 
 
-Write a Message
+<p class='position-relative fixed-bottom p-2 color-bg-white'>
 <form  class='box' id='mes' hx-post='' hx-swap='none' >
 {%csrf_token%}
 {%for field in form%}
@@ -25,6 +25,7 @@ Write a Message
 {%endfor%}
 <button onclick="" class="btn color-bg-p w-100">Send</button>
 </form>
+</p>
 
 <script>
 $(window).on('load',function(){

@@ -24,8 +24,7 @@ Notifications
 {% if notification.actor != request.user %}
 
 {%endif%}
-<div class='insize'>{{notification.actor|title}} {{notification.verb}}</div>
-<a class='sz-14' href={{notification.description|safe}}>View Tweets</a>
+<a class='sz-14 color-black' {%if notification.description%}href={{notification.description|safe}}{%endif%}>{{notification.actor}} {{notification.verb}}</a>
 <div class='sz-12 color-t'> on {{notification.timestamp}}</div>
 
 <hr>

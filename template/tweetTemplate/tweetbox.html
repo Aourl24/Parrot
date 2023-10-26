@@ -1,9 +1,10 @@
 {%load custom_tags%}
+<div id='tweetTarget'>
 <div class="row sz-14 m-1" id="tweetbox" style="z-index: 500;">
   {%for tweet in tweets %}
 
     <div class="col-md-12 my-1 p-2 border rounded col-sm" id="twetbox" style="">
-      
+
               {%if tweet.comment%}
           <div class="row my-2 sz-12 passive" style="">
             <div class="col">
@@ -26,7 +27,7 @@
             </span>
           </div>
         {%endif%}
-     
+
 
       <div class="row">
         <div class="col-2 col-md-1">
@@ -49,7 +50,7 @@
                   {{tweet.date|timesince}}
               </span>
             </div>
-            
+
             <div id="optionholder{{tweet.id}}" class="position-absolute p-1 hide">
               </div>
 
@@ -58,9 +59,9 @@
                   <i class="fas fa-ellipsis-h passive color-t">
                   </i>
               </span>
-              
+
             </div>
-            
+
           </div>
           <div class="sz-14" style="">
               <a class="color-black" href="{{tweet.get_absolute_url}}">
@@ -68,12 +69,12 @@
               </a>
           </div>
           {%if tweet.image.all%}
-          
+
             <div class="my-2 px-2 d-flex" style="hight:250px;overflow:auto">
               {%for img in tweet.image.all%}
                 <div class="col-11 m-1">
                   <img class="img-fluid p-0 w-100 rounded"  loading="lazy" src="{{img.image.url}}" style="height:250px;object-fit:cover;object-position:top;"/>
-                </div>                 
+                </div>
               {%endfor%}
             </div>
           {%endif%}
@@ -81,7 +82,7 @@
           {%if tweet.file.all%}
           <div class="d-flex" style="overflow:scroll;">
             {%for file in tweet.file.all %}
-                <video class="container p-0 rounded m-1" style="height:250px;object-fit:cover id="vid" autoplay muted>
+                <video class="container p-0 rounded m-1" style="height:250px;object-fit:cover id="vid" autoplay muted >
                   <source src="{{file.file.url}}" />
                 </video>
             {%endfor%}
@@ -114,21 +115,22 @@
             </div>
             <div class="col hide">
                 <button class="no-border btn color-t color-bg-white sz-12">
-                    <i class="fas fa-share-alt" style=""> 
+                    <i class="fas fa-share-alt" style="">
                     </i>
                 </button>
             </div>
 
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   {%endfor%}
+  </div
   </div>
 
         {%if tweets.has_next%}
-        <div class="cener" hx-get="?page={{tweets.next_page_number}}" hx-swap="innerHTML" hx-trigger="revealed" style="posiion:absolute;magin-left:50%">
-            <div class="circle rotate htmx-indicator" style="position:absolute;margin-left:50%;display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;">
+        <div class="d-flex position-absolute justify-content-center w-100" hx-get="?page={{tweets.next_page_number}}" hx-target='#tweetTarget' hx-swap="beforeend" hx-trigger="revealed" stle="posiion:absolute;magin-left:50%">
+            <div class="spinner-border htmx-indicator color-p" stle="position:absolute;margin-left:50%;display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;">
             </div>
         </div>
         {%endif%}
