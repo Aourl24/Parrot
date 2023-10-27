@@ -3,7 +3,7 @@
 <html>
     <meta content="width=device-width initial-scale=1" name="viewport"/>
     <head>
-        <link href="{%static 'css/bootstrap5/css/bootstrap.min.css'%}" rel="stylesheet"/>
+        <link href="{%static 'css/bootstrap-5/css/bootstrap.min.css'%}" rel="stylesheet"/>
         <link href="{%static 'css/acss/acss.css'%}" rel="stylesheet"/>
         <link href="{%static 'css/fontawesome_5/css/all.min.css'%}" rel="stylesheet"/>
         <script src="{%static 'js/react.production.min.js'%}">
@@ -49,21 +49,39 @@ display:block !important
 a{
     text-decoration: none;
 }
+
+ ::-webkit-scrollbar {
+        width: 5px;
+        height: 3px;
+        border-radius:10px;
+        dislay:none;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        width:3px;
+    }
+
     </style>
     {%if user.profile.mode == 'black'%}
     <link css="" dark.css'%}'="" href="{%static " rel="stylesheet"/>
     {%endif%}
-    <body class="display-d-none font-apple" style="overflow-left: hidden;">
+
+    <body class="font-apple bg-light" style="">
         <div id='loader' class='color-bg-white position-fixed d-flex justify-content-center align-items-center' style='width:100%;height:100%;z-index:100000'>
         <div class='center'><i class="fab fa-twitter sz-24 color-p"></i></div>
 
-    </div>
+        </div>
 
-        <header class="row center p-2 align-items-center dispay-md-none fixe-top color-bg-white borer-bottom mb-md-2 color-p" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
+        <header class="navbar center p-2 color-p p-2 sz-16" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
 
-               <div class="col col-md-2" style="text-align: left;">
+               <div class="navbar-brand" style="text-align: left;">
                 {%if request.user.is_authenticated%}
-                <img class="container p-0 rounded-circle border" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px;object-fit: cover;border-color:white;"><span class="dispay-sm-none"> {{request.user.username|title}} </span>
+                <img class="container p-0 rounded-circle border" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px;object-fit: cover;border-color:white;"/><span class="dispay-sm-none"> {{request.user.username|title}} </span>
                     {%else%}
                     <span class="display-md-none">
                     <i class="fas fa-bars color-white display-md-none" onclick="show()">
@@ -74,45 +92,50 @@ a{
                     <span class="hide pcolor hideI">
                         Profile
                     </span>
-                </img>
-            </a>
-        </div>
-            <div class="col bold mx-2" style="text-align:right;">
+                </div>
+            <div class="navbar-brand bold" style="text-align:right;">
                 {%block header%}
                 <i class="fab fa-twitter sz-24">
                 </i>
                 {%endblock%}
             </div>
         </header>
+        <br style="line-height:0px" ;/>
 
 
 
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-2 ">
-                    {%block sidebar%}
+                {%block sidebar%}
+                <div class="col-md-2 col-sm display-sm-none">
+                    <div class="position-relative coor-bg-white border-right" style="height:100%;">
+                    
 
 {%include 'dropdown.html' %}
 
-{%endblock%}
                 </div>
-                <div class="col-md-6 col-sm-12 p-2" stye="z-index:500;">
+                </div>
+                {%endblock%}
+                <div class="col-md col-sm p-3 " stye="z-index:500;">
                     {%block content%}
 
-{%endblock content%}
+                    {%endblock content%}
                 </div>
                 {%block other%}
-                <div class="col-md col-sm-12 display-sm-none">
+                <div class="col-md-2 col-sm-12 display-sm-none">
 
-                    <div class="position-fixed h-100" style="overflow:auto;">
+
+                    <div class="position-fixed h-100vw p-2" style="overflow:auto;width:inherit;">
                     <div class="row">
                             <div class="col">
-                                <input type="search" class="form-control" placeholder="search" />
+                                <form action="{%url 'SearchUrl' %}">
+                                    <input type="search" class="form-control" name="search" placeholder="search" />
+                                </form>
                             </div>
                         </div>
                         <br />
-                    <div class="p-2 border rounded" hx-get="{%url 'TrendUrl' %}" hx-swap="beforeend" hx-trigger="load" style="">
+                    <div class="p-2 bordr rounded color-bg-white" hx-get="{%url 'TrendUrl' %}" hx-swap="beforeend" hx-trigger="load" style="">
 
                         <div class="row">
                             <div class="col sz-20 bold">
@@ -139,22 +162,22 @@ a{
 <br />
 <br />
         {%block navbar%}
-        <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white" stye="overflow:hidden;">
-            <a class="navbar-brand" href="{%url 'TweetUrl'%}">
+        <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white sz-14" stye="overflow:hidden;">
+            <a class="navbar-brand sz-14" href="{%url 'TweetUrl'%}">
                 <i class="fas fa-home">
                 </i>
                 <span class="display-sm-none">
                     Home
                 </span>
             </a>
-            <a class="navbar-brand" href="{%url 'TrendUrl'%}">
+            <a class="navbar-brand sz-14" href="{%url 'TrendUrl'%}">
                 <i class="fas fa-search">
                 </i>
                 <span class="display-sm-none">
                     Explore
                 </span>
             </a>
-            <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
+            <a class="navbar-brand sz-14" href="{%url 'NotificationUrl' %}">
                 <i class="far fa-bell">
                 </i>
                 {%if request.user.notifications.unread.count%}
@@ -165,7 +188,7 @@ a{
                     Notification
                 </span>
             </a>
-            <a class="navbar-brand" href="{%url 'chat' %}">
+            <a class="navbar-brand sz-14" href="{%url 'chat' %}">
                 <i class="far fa-envelope">
                 </i>
                 <span class="display-sm-none">

@@ -9,10 +9,10 @@
 <div id='body' class='' style=''>
 	
 
-<div class='row sticky-top color-bg-white p-2' style='z-index:10003'>
-<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Following </button> </a>
+<div class='row sticky-top p-2 sz-16' style='z-index:10003'>
+<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100 sz-14' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Following </button> </a>
 <a class='normal col order-first' href="{%url 'HomeTweetUrl' 'foryou' %}">
-<button class='btn w-100' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> For you </button> </a>
+<button class='btn w-100 sz-14' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> For you </button> </a>
 
 </div>
 
@@ -35,9 +35,3 @@
 </div>
 
 {%endblock%}
-
-<br>
-<p class='center'><button class='button border'><i class='fas fa-switch'></i> Switch to Latest Tweets </button> 
-<button class='button border pcolor' style='background-color:white'><i class='fas fa-switch'></i> Switch to Home </button> </p>
-
-</p>

@@ -1,19 +1,20 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<div class='insize'> Tweets </div>
-{%if tweets %}
 
+{%if tweets %}
+<div class='sz-20 color-p'> Tweets </div>
 {%include 'tweetTemplate/tweetbox.html'%}
 
 {%else%}
 
 <h1 class="pcolor"> No Tweets Found </h1>
 {%endif%}
-<hr>
+<br>
 <div class='box' style='text-align: left;'>
-<div class='insize'> Profile </div>
+
 {%if people %}
+<div class='sz-20 color-p'> Profile </div>
 {%for profile in people%}
 <div class='box bordr curve' style='width:100%'>
 	<a href="{{profile.get_absolute_url}}" >

@@ -149,7 +149,7 @@ def TweetView(request, lat=None, hom=None):
     page=Paginator(tweetss,5) # i page the tweets this save the page from overhead loading, so it send the tweets page by page
 
     #tweetss = api.user_timeline(count=10)
-    print(tweetss)
+    
     page_no=request.GET.get('page') # get the page number from the request
     tweets=page.get_page(page_no) # get the tweets from that page
     
@@ -208,7 +208,7 @@ def TweetView(request, lat=None, hom=None):
         except ObjectDoesNotExist:
             tweet_to_retweet=''
 
-        print(tweet_to_retweet)
+        
         dd=dict(tweet=tweet_to_retweet,prof=prof)
 
         return render(request,'tweetTemplate/retweet.html',dd)
@@ -331,7 +331,7 @@ def TrendingView(request):
     Top.sort()
     Top=set(Top)
     #Top = api.get_place_trends(id=1)
-    print(Top)
+    
     if 'HX-Request' in request.headers:
         template = 'tweetTemplate/trendbox.html'
 

@@ -26,7 +26,7 @@ border:none;
 
 
 
-<div class='border p-2 rounded my-2' style=''>
+<div class='p-3 rounded my-2 color-bg-white' style=''>
 {%comment%}
 {%if tweet.comment%}
 <p class='desize bold passive'><i class='fas fa-comment'></i> Reply to {{tweet.comment.profile|title}} <a class='normal' style='color:#1DA1F2' href='{{tweet.comment.get_absolute_url}}'>Tweet</a></p>
@@ -53,7 +53,7 @@ border:none;
 	<span class="sz-12 color-t">/{{tweet.profile.user.username|lower}}</span>
 </div>
 
-<div class="col">
+<div class="col col-md-2">
 	{%include 'tweetTemplate/follow.html' with profile=tweet.profile User=prof %}
 </div>
 
@@ -63,7 +63,7 @@ border:none;
 
 
 
-<p class='body sz=16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</p>
+<p class='body sz-16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</p>
 
 
 <p>
@@ -104,10 +104,10 @@ border:none;
 
 </div>
 
-<div class="row sz-16 align-items-center color-t p-1">
+<div class="row sz-14 align-items-center color-t p-1">
             <div class="col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
-                    <button class="btn no-border color-t color-bg-white">
+                    <button class="btn no-border sz-14 color-t color-bg-white">
                         <i class="far fa-comment">
                         </i>
                         {{tweet.tweet.count}}

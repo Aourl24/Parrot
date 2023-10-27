@@ -1,12 +1,18 @@
-<div id="dropdown" class="animate__animated animate__slideInDown overflow-auto border rounded h-md-100 color-bg-white color-bg-dark-light m-0 p-3 p-md-1 sz-16 position-fixed display-sm-none" style="overlow:auto;z-index:15000">
+<div id="dropdown" class="sz-14 position-fixed" style="">
     {%if ser.is_authenticated%}
 
-    <img class='container p-0 rounded-circle' style='width:35px;height:35px;object-fit:cover' src={{request.user.profile.profile_photo.url}}  /> 
+
+    <img class='img-fluid p-0 rounded-circle' style='width:35px;height:35px;object-fit:cover' src={{request.user.profile.profile_photo}}  /> 
         {{request.user}}
         <div class=''> <a class="col sz-12 color-black" href="{%url 'FollowerListUrl' request.user.profile.id%}" ><span class='sz-12 color-t' style=''>{{request.user.profile.follower.count}}</span> Followers </a><a href="{%url 'FollowListUrl' request.user.profile.id%}" class="col color-black sz-12"><span class='sz-12 color-t' style=''>{{request.user.profile.follow.count}}</span> Following  </a> </div>
     
         {%endif%}
-        <div class="row py-2 display-sm-none m-2">
+
+        <div class="row">
+            <div class="col sz-20 bold"> Hello {{request.user|title}}</div>
+        </div>
+
+        <div class="row my-3 p-2 display-sm-none">
                 <a class="navbar-brand" href="{%url 'TweetUrl'%}">
                     <i class="fas fa-home"></i>
                 <span class="">
@@ -15,7 +21,8 @@
             
             </a>
         </div>
-        <div class="row m-2 py-2 display-sm-none">
+
+        <div class="row my-3 p-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'TrendUrl'%}">
                 <i class="fas fa-search">
                 </i>
@@ -24,7 +31,7 @@
                 </span>
             </a>
         </div>
-        <div class="row m-2 py-2 display-sm-none">
+        <div class="row my-3 p-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'NotificationUrl' %}">
                 <i class="fas fa-bell">
                 </i>
@@ -36,7 +43,7 @@
                 </span>
             </a>
         </div>
-        <div class="row m-2 py-2 display-sm-none">
+        <div class="row my-3 p-2 display-sm-none">
             <a class="navbar-brand" href="{%url 'chat' %}">
                 <i class="fas fa-envelope">
                 </i>
@@ -47,7 +54,7 @@
         </div>
 
 
-                <div class="row m-2 py-2">
+                <div class="row my-3 p-2">
                     <a href='{{request.user.profile.get_absolute_url}}' class='navbar-brand'>
                         <i class='fas fa-user'></i>
     
@@ -55,7 +62,7 @@
                     </a>
                 </div>
             
-                <div class='row m-2 py-2 hide'>
+                <div class='row my-3 p-2 hide'>
                     <a href="{%url 'SaveUrl' %}" class='navbar-brand'>
                         
                         <i class='fas fa-box pcolor'></i>
@@ -97,7 +104,7 @@
     
             {%if user.is_authenticated%}
             
-                <div class="row m-2 py-2">
+                <div class="row my-3 p-2">
                     <a href="{%url 'account_logout'  %}" class='navbar-brand'>
                         
                         <i class='fas fa-door-open pcolor'></i>

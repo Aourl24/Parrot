@@ -21,17 +21,17 @@
 body{
     background-color: white;
 }
-input{
+inpt{
     height: 1.1cm;
 }
 </style>
 
 <div class='' style=''>
     <div class='row rounded p-2 justify-content-center' style=''>
-        <div class='col-md-10 col-sm-12 p-3 rounded color-bg-white'>
+        <div class='col-md-6 col-sm-12 p-3 rounded colr-bg-white'>
             <div class='row'>
                 <div class='col'>
-                    <h2 style='' class='color-black'>
+                    <h2 style='' class='color-p'>
                         Login
                      </h2>
                 </div>
@@ -65,13 +65,13 @@ input{
                         {%endif%}
                     {% endfor %}
                     
-                    <div class='row my-3'>
+                    <p class='row my-3'>
                         <div class='col col-sm-12'>
                                 <button class='btn btn-block color-bg-p color-white sz-18 w-100'>
                                     Login
                                 </button>
                         </div>
-                    </div>
+                    </p>
 
                     <div class='row my-2'>
                         <div class='col center'>
@@ -82,7 +82,8 @@ input{
                     </div>
             </form>
         </div>
-        <div class='col-md-10 col-sm-12 p-3 rounded color-bg-white'>
+        <div class="h-100"></div>
+        <div class='col-md-6 col-sm-12 p-3 rounded coor-bg-white'>
 
             <div class="row">
                 <div class="col">
@@ -97,20 +98,20 @@ input{
                     If You don't have an account
                 </div>
             </div>
-            <div class='row my-2 center'>
+            <p class='row my-2 center'>
                 <div class='col'>
                     <a class='btn btn-block color-bg-s sz-18 color-white w-100' href="{% url 'account_signup'%}" style='baground-color:357417'>
                         Sign Up
                     </a>
                 </div>
-            </div>
+            </p>
         </div>
     </div>
 </div>
 
 <script>
 $(window).on('load',function(){
-    $('input').addClass('form-control')
+    $('input').addClass('form-control sz-16')
 })
 
 </script>
