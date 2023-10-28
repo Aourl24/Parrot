@@ -3,35 +3,36 @@
 {%load custom_tags%}
 
 {%block content%}
-<style>
 
-</style>
-<div id='body' class='' style=''>
-	
-
-<div class='row sticky-top p-2 sz-16' style='z-index:10003'>
-<a class='col normal' href="{%url 'LatestTweetUrl' 'latest'%}"><button class='btn w-100 sz-14' style='background-color:{{latest}};color:{{home}}'><i class='fas fa-switch'></i> Following </button> </a>
-<a class='normal col order-first' href="{%url 'HomeTweetUrl' 'foryou' %}">
-<button class='btn w-100 sz-14' style='background-color:{{home}};color:{{latest}}'><i class='fas fa-switch'></i> For you </button> </a>
-
-</div>
-
-
-{%if blank%}
-<p class='mt-2 hide' style=''> OOps!!! , it seems your exposure is low Connect with people or click to explore trends <a href="{%url 'TrendUrl'%}"> Explore </a>  </p>
-
-
-<div class='box bcolor borer bolor' id='connect' hx-get="{%url 'FriendUrl'%}" hx-swap='innerHTML' hx-trigger='load' style="">
-
-<div class='circle rotate htmx-indicator' style='display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;'>
-</div>
-</div>
-{%endif%}
+    <div class="row sticky-top p-2 sz-16" style="z-index:10003">
+        <a class="col normal" href="{%url 'LatestTweetUrl' 'latest'%}">
+            <button class="btn w-100 sz-14" style="background-color:{{latest}};color:{{home}}">
+                <i class="fas fa-switch">
+                </i>
+                Following
+            </button>
+        </a>
+        <a class="normal col order-first" href="{%url 'HomeTweetUrl' 'foryou' %}">
+            <button class="btn w-100 sz-14" style="background-color:{{home}};color:{{latest}}">
+                <i class="fas fa-switch">
+                </i>
+                For you
+            </button>
+        </a>
+    </div>
+    {%if blank%}
+    <p class="mt-2 hide" style="">
+        OOps!!! , it seems your exposure is low Connect with people or click to explore trends
+        <a href="{%url 'TrendUrl'%}">
+            Explore
+        </a>
+    </p>
+    <div class="box bcolor borer bolor" hx-get="{%url 'FriendUrl'%}" hx-swap="innerHTML" hx-trigger="load" id="connect" style="">
+        <div class="circle rotate htmx-indicator" style="display:inline-block;border:3px solid #1DA1F2; border-left:4px solid #DEF1FD;position:absolute;padding:0px;">
+        </div>
+    </div>
+    {%endif%}
 
 {%include 'tweetTemplate/tweetbox.html'%}
-
-
-
-</div>
 
 {%endblock%}
