@@ -20,7 +20,7 @@
     <style>
         :root{
 --primary-color: #1DA1F2;
---secondary-color:#07294D;color;
+--secondary-color:darkblue;
 --tertiary-color:gray;
 }
 {#1DA1F2}
@@ -50,6 +50,46 @@ a{
     text-decoration: none;
 }
 
+ a{
+        text-decoration: none;
+        colr:inherit!important;
+    }
+    a:hover {
+        color:grey!important;
+        padding:3px;
+    }
+
+    .btn a:hover{
+        color:white!important;
+    }
+    button:hover{
+        background-color:silver;
+    }
+
+    .btn:hover{
+        background-color:#d7d7d7;
+        color:white;
+    }
+
+    .btn:focus{
+        background-color:silver;
+        color:black;
+    }
+    a:focus{
+        color:var(--primary-color);
+    }
+    input{
+      height:2em;
+      font-size:16px;
+    }
+    .form-conrol:hover{
+        border-color: silver;
+    }
+
+    .form-conrol:focus{
+        border-color: var(--primary-color);
+    }
+
 
  ::-webkit-scrollbar {
         width: 5px;
@@ -66,30 +106,41 @@ a{
         background: var(--primary-color);
         width:3px;
     }
+
+    input.form-control{
+      height:40px;
+      font-size:16px;
+    }
+
+    .btn{
+        height:40px;
+    }
     </style>
     {%if user.profile.mode == 'black'%}
     <link css="" dark.css'%}'="" href="{%static " rel="stylesheet"/>
     {%endif%}
-    <body class="font-apple bg-light" style="">
+    <body class="font-apple bg-ligh" style="bckground-color:#EAF2F8;">
         <div class="color-bg-white position-fixed d-flex justify-content-center align-items-center" id="loader" style="width:100%;height:100%;z-index:100000">
             <div class="center">
-                <i class="fab fa-twitter sz-24 color-p">
+                <i class="fas fa-comments sz-24 color-p">
                 </i>
             </div>
         </div>
+        {%block headerBody%}
         <header class="navbar center p-2 color-p p-2 sz-16" style="backgrund-color: rgba(250, 250, 250, 0.8);z-index:10001;">
             <div class="navbar-brand" style="text-align: left;">
                 {%if request.user.is_authenticated%}
-                <img class="container p-0 rounded-circle border" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px;object-fit: cover;border-color:white;"/>
+                <a href="{{request.user.profile.get_absolute_url}}" class="no-decoration color-p"><img class="container p-0 rounded-circle border" loading="lazy" onclick="show()" src="{{request.user.profile.profile_photo.url}}" style="width:30px;height:30px;object-fit: cover;border-color:white;"/>
                 <span class="dispay-sm-none">
                     {{request.user.username|title}}
                 </span>
+            </a>
                 {%else%}
                 <span class="display-md-none">
-                    <i class="fas fa-bars color-white display-md-none" onclick="show()">
+                    <i class="fas fa-bars display-md-none" onclick="show()">
                     </i>
                 </span>
-                twitter.com
+                chitchat.com
                     {%endif%}
                 <span class="hide pcolor hideI">
                     Profile
@@ -97,11 +148,12 @@ a{
             </div>
             <div class="navbar-brand bold" style="text-align:right;">
                 {%block header%}
-                <i class="fab fa-twitter sz-24">
-                </i>
+                <i class="fas fa-comments sz-24">
+                </i> ChitCHAT
                 {%endblock%}
             </div>
         </header>
+        {%endblock%}
         
         <div class="container">
             <div class="row">
@@ -112,7 +164,7 @@ a{
                     </div>
                 </div>
                 {%endblock%}
-                <div class="col-md col-sm p-2" stye="z-index:500;">
+                <div class="col-md col-sm p-3" stye="z-index:500;">
                     {%block content%}
 
                     {%endblock content%}
@@ -154,22 +206,24 @@ a{
         <br/>
         <br/>
         {%block navbar%}
-        <nav class="navbar display-md-none fixed-bottom justify-content-evenly border-top color-bg-white sz-14" style="">
-            <a class="navbar-brand sz-18" href="{%url 'TweetUrl'%}">
+        <nav class="navbar display-md-none color-p
+        sticky-bottm fixed-bottom bold border-tp  p-2
+        justify-content-evenly shadow fot-circular color-bg-white" style="">
+            <a class="navbar-brand sz-20 p-2" href="{%url 'TweetUrl'%}">
                 <i class="fas fa-home">
                 </i>
                 <span class="display-sm-none">
                     Home
                 </span>
             </a>
-            <a class="navbar-brand sz-18" href="{%url 'TrendUrl'%}">
+            <a class="navbar-brand sz-20 p-2" href="{%url 'TrendUrl'%}">
                 <i class="fas fa-search">
                 </i>
                 <span class="display-sm-none">
                     Explore
                 </span>
             </a>
-            <a class="navbar-brand sz-18" href="{%url 'NotificationUrl' %}">
+            <a class="navbar-brand sz-20 p-2" href="{%url 'NotificationUrl' %}">
                 <i class="far fa-bell">
                 </i>
                 {%if request.user.notifications.unread.count%}
@@ -181,7 +235,7 @@ a{
                     Notification
                 </span>
             </a>
-            <a class="navbar-brand sz-18" href="{%url 'chat' %}">
+            <a class="navbar-brand sz-20 p-2" href="{%url 'chat' %}">
                 <i class="far fa-envelope">
                 </i>
                 <span class="display-sm-none">
@@ -190,6 +244,11 @@ a{
             </a>
         </nav>
         {%endblock%}
+
+        <div class="position-relative bottom-0 translate-middle center start-50">
+
+            <div class="">This website is developed by Awwal(loulou)</div></div>
+</div>
     </body>
 
     <script>

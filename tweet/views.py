@@ -269,11 +269,15 @@ def EditProfileView(request):
     form=ProfileForm(instance=profile)
     
     if request.method=='POST':
-        form=ProfileForm(request.POST, request.FILES,  instance=profile)
+        form=ProfileForm(request.POST, request.FILES,instance=profile)
+        username= request.POST.get('username')
         if form.is_valid():
             form.save()
+            request.user.username = username
+            request.user.save()
+
             
-        return redirect('ProfileUrl', profile.id)
+            return redirect('ProfileUrl', profile.id)
     
     template='tweetTemplate/editProfile.html'
     context=dict(form=form)

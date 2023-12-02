@@ -3,32 +3,49 @@
 {%block content%}
 
 {%if tweets %}
-<div class='sz-20 color-p'> Tweets </div>
+<div class="sz-20 color-p">
+    Tweets
+</div>
 {%include 'tweetTemplate/tweetbox.html'%}
 
 {%else%}
-
-<h1 class="pcolor"> No Tweets Found </h1>
+<h1 class="pcolor">
+    No Tweets Found
+</h1>
 {%endif%}
-<br>
-<div class='box' style='text-align: left;'>
-
-{%if people %}
-<div class='sz-20 color-p'> Profile </div>
-{%for profile in people%}
-<div class='box bordr curve' style='width:100%'>
-	<a href="{{profile.get_absolute_url}}" >
-		<img class='avatar' style='margin:0px' loading='lazy' src='{{profile.profile_photo.url}}'  >
-	
-	<div class='mesize'>{{profile.user.username|title}}</div>
-	</a>
-	<hr>
-	
-
+<br/>
+<div class="box" style="text-align: left;">
+    {%if people %}
+    <div class="sz-20 color-p">
+        Profile
+    </div>
+    <div class="row m-1 justify-content-center" style="">
+        {%for profile in people%}
+        <div class="col-sm-12 col-md-5 p-2 border center rounded my-2 mx-md-1" style="">
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{profile.get_absolute_url}}">
+                        <img class="img-fluid rounded-circle" loading="lazy" src="{{profile.profile_photo.url}}" style="height:40px;width:40px;object-fit:cover"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col sz-16">
+                    {{profile.user.username}}
+                </div>
+                <div>
+                    {{profile.bio}}
+                </div>
+            </div>
+            <br/>
+            <div class="row" id="{{profile.id}}cc">
+                <div class="col">
+                    {%include 'tweetTemplate/follow.html' %}
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
 </div>
-
-{%endfor%}
-
 {%endif%}
-</div>
 {%endblock%}

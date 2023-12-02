@@ -1,4 +1,7 @@
 twitter/.env
-static/
-staticfiles/
-media/
+media/*
+db.sqlite3
+tweet/__pycache__/*
+tweet/__pycache__/*
+chat/__pycache__/*
+

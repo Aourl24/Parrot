@@ -2,6 +2,9 @@
 {%extends 'base.html'%}
 {%load static%}
 {%load socialaccount%}
+{%block headerBody%}
+
+{%endblock%}
 
 {%block sidebar%}
 {%endblock%}
@@ -27,11 +30,17 @@ inpt{
 </style>
 
 <div class='' style=''>
+    <div class="row">
+    <div class="col sz-36 center">
+        <i class="fas fa-comments color-p" ></i> <span class="sz-18">ChitCHAT</span>
+    </div>
+</div>
+<br />
     <div class='row rounded p-2 justify-content-center' style=''>
         <div class='col-md-6 col-sm-12 p-3 rounded colr-bg-white'>
             <div class='row'>
                 <div class='col'>
-                    <h2 style='' class='color-p'>
+                    <h2 style='bold' class='color-p'>
                         Login
                      </h2>
                 </div>
@@ -52,7 +61,7 @@ inpt{
 
                              {{field.errors}}
                             <div class='row my-3'>
-                                <div class='col sz-14 bold color-s'>
+                                <div class='col sz-14 color-s'>
                                     {{field.label}}
                                 </div>
                             </div>

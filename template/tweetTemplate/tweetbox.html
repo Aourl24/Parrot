@@ -3,7 +3,7 @@
 <div class="row sz-14 m-1" id="tweetbox" style="z-index: 500;">
   {%for tweet in tweets %}
 
-    <div class="col-md-12 p-3 my-2 borer color-bg-white rounded col-sm " id="twetbox" style="">
+    <div class="col-md-12 p-2 my-2 border-bottom color-bg-white rounde col-sm " id="twetbox" style="">
 
               {%if tweet.comment%}
           <div class="row my-2 sz-12 passive" style="">
@@ -12,7 +12,7 @@
                 </i>
                 Reply to {{tweet.comment.profile|title}}'s
                 <a class="" href="{{tweet.comment.get_absolute_url}}" style="">
-                    tweet
+                    post
                 </a>
             </div>
           </div>
@@ -23,7 +23,7 @@
             <div class="col">
             <i class="fas fa-retweet">
             </i>
-                {{tweet.retweet.user|title}} Retweet
+                {{tweet.retweet.user|title}} Repost
             
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div id="optionholder{{tweet.id}}" class="position-absolute p-1 hide">
               </div>
 
-            <div class="col-2 col-md-1 sz-12" hx-get="{%url 'OptionUrl' %}" hx-include="#on{{tweet.id}}" hx-swap="innerHTML" hx-target="#optionholder{{tweet.id}}" style="tet-align:right;float:right">
+            <div class="col-2 col-md-1 sz-12 hide" hx-get="{%url 'OptionUrl' %}" hx-include="#on{{tweet.id}}" hx-swap="innerHTML" hx-target="#optionholder{{tweet.id}}" style="tet-align:right;float:right">
               <span class="">
                   <i class="fas fa-ellipsis-v passive color-t">
                   </i>
@@ -65,7 +65,7 @@
             </div>
 
           </div>
-          <p class="sz-14" style="">
+          <p class="sz-16" style="">
               <a class="color-black" href="{{tweet.get_absolute_url}}">
                   {{tweet.body|truncatechars:':280'}}
               </a>
@@ -94,24 +94,24 @@
 
           <input id="on{{tweet.id}}" name="like" type="hidden" value="{{tweet.id}}"/>
           <input id="tt{{tweet.id}}" name="retweet" type="hidden" value="{{tweet.id}}"/>
-          <div class="row sz-12 align-items-center my-3">
+          <div class="row sz-14 align-items-center my-3">
             <div class="col-md-2 col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
-                    <button class="btn no-border color-t color-bg-white sz-12 p-0">
+                    <button class="btn no-border color-t color-bg-white sz-14 p-0">
                         <i class="far fa-comment">
                         </i>
                         {{tweet.tweet.count}}
                     </button>
                 </a>
             </div>
-            <div class="col-md-2 col">
+            <div class="col-md-2 col sz-14">
                 {%include 'tweetTemplate/like.html'%}
             </div>
-            <div class="col-md-2 sz-12 col">
+            <div class="col-md-2 sz-14 col">
                 {%include 'tweetTemplate/retweet.html'%}
             </div>
-            <div class="col-md-2 col">
-              <button class="no-border btn color-t color-bg-white sz-12 p-0">
+            <div class="col-md-2 col sz-14">
+              <button class="no-border btn color-t sz-14 color-bg-white p-0">
                 <i class="fas fa-eye"></i> {{tweet.views}}
               </button>
             </div>
@@ -131,7 +131,7 @@
   </div>
 
         {%if tweets.has_next%}
-        <div class="position-absolute jusify-content-center w-100 center" hx-get="?page={{tweets.next_page_number}}" hx-target='#tweetTarget' hx-swap="beforeend" hx-trigger="revealed">
+        <div class="position-absolute justify-content-centr start-50 translate-middle" hx-get="?page={{tweets.next_page_number}}" hx-target='#tweetTarget' hx-swap="beforeend" hx-trigger="revealed">
             <div class="spinner-border htmx-indicator color-p">
             </div>
         </div>

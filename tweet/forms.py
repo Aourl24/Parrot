@@ -22,4 +22,4 @@ class FileForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model=Profile
-        exclude=['follower', 'user']
+        exclude=['follower','user','cover_photo','mode','location']

@@ -1,6 +1,8 @@
 {%extends 'base.html'%}
 {% load socialaccount %}
+{%block headerBody%}
 
+{%endblock%}
 {%block sidebar%}
 {%endblock%}
 {%block header%}
@@ -14,18 +16,20 @@
 {%block bottom%}
 {%endblock%}
 {%block content%}
-<div class="justify-content-centre container">
+<div class="center row justify-content-center align-items-center w-100">
+<div class="col-md-5">
 
 <br class="display-md-none" style="line-height:20px;">
 <div class="row">
-	<div class="col sz-36">
-		<i class="fab fa-twitter color-p" ></i>
+	<div class="col sz-36 center">
+		<i class="fas fa-comments color-p" ></i> <span class="sz-18">ChitCHAT</span>
 	</div>
 </div>
 <br />
+<br />
 <div class="row">
 	<div class="col sz-36 bold color-p">
-		Happening <br/> Now
+		Unleash <br/> Connections
 	</div>
 </div>
 
@@ -77,4 +81,5 @@
 	</div>
 </div>
 </div>
+
 {%endblock%}

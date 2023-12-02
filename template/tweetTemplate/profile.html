@@ -13,12 +13,12 @@ width:100%;
 }
 
 </style>
-<div class='sz-14'>
+<div class='sz-14 p-2 mt-2'>
 {%if profile.cover_photo%}
-<div class='' style='heiht:50%;boder:none' ><img class="container w-100" style="height:180px;object-fit:cover" src='{{profile.cover_photo.url}}'>
+<div class='hide' style='heiht:50%;boder:none' ><img class="container w-100" style="height:180px;object-fit:cover" src='{{profile.cover_photo.url}}'>
 </div>
 {%else%}
-<div class='w-100 color-bg-p' style="height:150px;background-color:siver;">
+<div class='w-100 hide color-bg-p' style="height:150px;background-color:siver;">
 </div>
 {%endif%}
 <div class='box' style='border:none'>
@@ -42,7 +42,7 @@ width:100%;
 {%include 'tweetTemplate/follow.html' %}
 {%endif%}
 <hr>
-<p class='insize box-border center sticky-top' style='z-index: 4;border:none;box-shadow:none' >Tweets</p>
+<p class='box-border center sticky-top bold' style='z-index: 4;border:none;box-shadow:none bold' >Posts</p>
 
 
 {%include 'tweetTemplate/tweetbox.html'%}

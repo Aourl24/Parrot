@@ -1,14 +1,41 @@
 {%extends 'base.html'%}
+{%block header%}
+Edit Profile
+{%endblock%}
 {%block content%}
-<div class='box' style='border:none'>
-<form method='POST' enctype='multipart/form-data'>
-{%csrf_token%}
-{%for field in form%}
-<p><div class='insize bold'>{{field.label}}</div>
-<div>{{field.as_widget}}</div></p>
-<hr>
-{%endfor%}
-<button class='normal center' style='height:1cm;width:100%;background-color:1DA1f2;color:white'>Submit</button>
-</form>
+<div class="" style="border:none">
+    <form enctype="multipart/form-data" method="POST">
+        {%csrf_token%}
+        <div class="row my-3">
+            <div class="col color-black sz-md-16">
+                Username
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col col-sm">
+                <input class="form-control sz-16" name="username" value={{request.user}}>
+            </div>
+        </div>
+        {%for field in form%}
+        <div class="row my-3">
+            <div class="col color-black sz-md-16">
+                {{field.label}}
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col col-sm">
+                {{ field.as_widget }}
+            </div>
+        </div>
+        {%endfor%}
+        <button class="btn color-bg-p sz-16 w-100 color-white" styl="height:1cm;width:100%;background-color:1DA1f2;color:white">
+            Submit
+        </button>
+    </form>
 </div>
+<script>
+    $(window).on('load',function(){
+    $('input').addClass('form-control sz-16')
+})
+</script>
 {%endblock%}

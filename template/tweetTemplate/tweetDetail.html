@@ -26,7 +26,7 @@ border:none;
 
 
 
-<div class='p-3 rounded my-2 color-bg-white' style=''>
+<div class='p-1 rounded my-2 color-bg-white' style=''>
 {%comment%}
 {%if tweet.comment%}
 <p class='desize bold passive'><i class='fas fa-comment'></i> Reply to {{tweet.comment.profile|title}} <a class='normal' style='color:#1DA1F2' href='{{tweet.comment.get_absolute_url}}'>Tweet</a></p>
@@ -48,9 +48,9 @@ border:none;
 </a>
 
 </div>
-<div class="col">
+<div class="col sz-md-16">
 	{{tweet.profile}} <br/>
-	<span class="sz-12 color-t">/{{tweet.profile.user.username|lower}}</span>
+	<a class="sz-12 color-t" href="{{tweet.profile.get_absolute_url}}">/{{tweet.profile.user.username|lower}}</a>
 </div>
 
 <div class="col col-md-2">
@@ -63,10 +63,10 @@ border:none;
 
 
 
-<p class='body sz-16' styl='line-height:30px;font-size:20px'>{{tweet.body}}</p>
+<div class='body sz-18 my-2' styl='line-height:30px;font-size:20px'>{{tweet.body}}</p>
 
 
-<p>
+</div>
 {%if tweet.image.all%}
 {%if tweet.image.all%}
           
@@ -104,7 +104,7 @@ border:none;
 
 </div>
 
-<div class="row sz-14 align-items-center color-t p-1">
+<div class="row sz-16 align-items-center color-t p-1 border-bottom">
             <div class="col">
                 <a href="{{tweet.get_absolute_url}}?#holder">
                     <button class="btn no-border sz-14 color-t color-bg-white">
@@ -114,10 +114,10 @@ border:none;
                     </button>
                 </a>
             </div>
-            <div class="col">
+            <div class="col sz-16">
                 {%include 'tweetTemplate/like.html'%}
             </div>
-            <div class="col">
+            <div class="col sz-16">
                 {%include 'tweetTemplate/retweet.html'%}
             </div>
             <div class="col hide">
@@ -130,7 +130,7 @@ border:none;
                     </i>
                 </button>
             </div>
-            <div class="col" style='' >
+            <div class="col" style='sz-16' >
                  <i class="fas fa-eye"></i> {{tweet.views}}
             </div>
 
@@ -141,15 +141,21 @@ border:none;
 
 
 
-<br>
 
-<div class='' style='padding:5px'><a class='norml' href='#hell'><input name='body' id='holder' class='form-control' onclick="$('#hell').addClass('show');$('#holder').addClass('hide')" stye='border: none;border-bottom: 2px solid var(--primary-color);width:100%;bottom:10px;height:1cm;box-shadow:none;' placeholder='Post your Reply'></a>
+<div class='' style='padding:5px'>
+    <input name='body' id='holder' class='form-control' onclick="$('#hell').fadeIn()" stye='border: none;border-bottom: 2px solid var(--primary-color);width:100%;bottom:10px;height:1cm;box-shadow:none;' placeholder='Write a Reply'>
 </div>
 
-<div id='hell' class='hide'>
+<div class="modal sz-18 swap" id="hell" style="z-index:4000;width:100%;heiht:170px;tp:20%;background-color:rgba(300,300,300,0.9
+)">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content no-border" syle="top:50px;width:100%">
 {%include 'tweetTemplate/create.html'%}
-</div>
 
+<div><button class="btn btn-danger w-100 sz-16" onclick="$('#hell').fadeOut()">Close </button></div>
+</div>
+</div>
+</div>
 {%include 'tweetTemplate/tweetbox.html' with tweets=tweet.tweet.all %}
 
 
